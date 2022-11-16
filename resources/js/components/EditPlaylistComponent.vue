@@ -8,7 +8,7 @@
             <br><br>
             
             Playlist name: 
-            <input type="text">
+            <input type="text" v-model="playlistNameInput">
             <button type="submit">Submit</button>
         </form>
     </div>
@@ -18,7 +18,9 @@
 <script>
 export default {
     data() {
-        return {}
+        return {
+            playlistNameInput: null
+        }
     },
 
     methods: {
@@ -29,8 +31,13 @@ export default {
         },
 
         editPlaylist() {
-            axios.post('/editPlaylist').then((response) => {
+            axios.post('/editPlaylist', {
+                playlistName: this.playlistNameInput,
+                id: this.$props.test.id
+            }).then((response) => {
                 console.log(response);
+            }).catch((error) => {
+                console.log(error);
             })
         }
     },

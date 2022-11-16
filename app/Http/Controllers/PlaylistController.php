@@ -18,6 +18,25 @@ class PlaylistController extends Controller
 
     public function editPlaylist(Response $request) 
     {
-        Log::info($request);
+        // dd($request->id);
+
+        $playlist = Playlist::where('id', request('id'))->first();
+        // dd($playlist);
+        $playlist->playlist_name = request('playlistName');
+        // dd(request('id'));
+        $playlist->save();
+        
+        // dd($request->id);
+        // dd($playlist);
+        // $playlist->playlist_name = $request->playlistName;
+        // $playlist->save();
+        // $playlistName = $request->playlist_name;
+
+        // $playlist->where('id', request()->name)
+        
+
+
+        // Log::info($request);
+        return redirect('/');
     }
 }

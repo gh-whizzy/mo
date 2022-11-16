@@ -9,7 +9,7 @@
   
 
         <div v-show="library" v-for="playlist in playlists">
-
+            
        
             PLAYLIST NAME: {{ playlist.playlist_name }}
             <br>
