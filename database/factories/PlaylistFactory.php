@@ -37,7 +37,7 @@ class PlaylistFactory extends Factory
         // }
 
         return [
-            'playlist_name' => fake()->name(),
+            'playlist_name' => fake()->word(),
             // 'playlist_type' => fake()->randomElement(['video', 'audio', 'image']),
             // 'playlist_type' => Media::all()->random()->pluck('media_type') == 'audio' ? $allIdsOfAudio : 'bar',
             'playlist_type' => ($randomMediaType[0] === 'audio' ? 'audio' : ($randomMediaType[0] === 'video' ? 'video' : 'images')),
