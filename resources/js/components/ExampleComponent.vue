@@ -1,11 +1,23 @@
 <template>
     <div>
+        
+        <div>
+            <!-- {{ fields.data }} {{ fields }} -->
+        </div>
+
         <div v-for="field in fields">
-            <div>{{ field.id }}</div>
-            <div>{{ field.playlist_name }}</div>
-            <div>{{ field.playlist_type }}</div>
-            <div>{{ field.created_by }}</div>
-            <div>{{ field.media }}</div>
+            Playlist: {{ field.id }}
+            <br>
+
+            <!-- {{ field.media }} -->
+            <div v-for="media in JSON.parse(field.media)">
+                
+                NAME: {{ media.media_name }}
+                <br>
+                TYPE: {{ media.media_type}}
+                
+            </div>
+            <br>
         </div>
         <div>{{ errors }}</div>
         
@@ -13,7 +25,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import axios from 'axios';
 
     export default {
         data() {
@@ -26,6 +38,7 @@
         mounted() {
             console.log('mounted')
             axios.get('/getAllPlaylists').then((response) => {
+                console.log(response);
                 this.fields = response.data;
             }).catch((error) => {
                 this.erros = error;

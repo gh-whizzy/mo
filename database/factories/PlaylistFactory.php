@@ -18,9 +18,9 @@ class PlaylistFactory extends Factory
      */
     public function definition()
     {
-        $allIdsOfAudio = Media::all()->where('media_type', 'audio')->random(10)->pluck('id');
-        $allIdsOfVideo = Media::all()->where('media_type', 'video')->pluck('id');
-        $allIdsOfImage = Media::all()->where('media_type', 'images')->pluck('id');
+        $randomIdsOfAudio = Media::all()->where('media_type', 'audio')->random(10);
+        $randomIdsOfVideo = Media::all()->where('media_type', 'video')->random(10);
+        $randomIdsOfImage = Media::all()->where('media_type', 'images')->random(10);
 
         $randomMediaType = Media::all()->random(1)->pluck('media_type');
         Log::info($randomMediaType[0]);
@@ -40,9 +40,9 @@ class PlaylistFactory extends Factory
             'playlist_name' => fake()->name(),
             // 'playlist_type' => fake()->randomElement(['video', 'audio', 'image']),
             // 'playlist_type' => Media::all()->random()->pluck('media_type') == 'audio' ? $allIdsOfAudio : 'bar',
-            'playlist_type' => $randomMediaType[0] === 'audio' ? $allIdsOfAudio : 'nope',
+            'playlist_type' => ($randomMediaType[0] === 'audio' ? 'audio' : ($randomMediaType[0] === 'video' ? 'video' : 'images')),
             'created_by' => fake()->name(),
-            'media' => fake()->url()
+            'media' => ($randomMediaType[0] === 'audio' ? $randomIdsOfAudio : ($randomMediaType[0] === 'video' ? $randomIdsOfVideo : $randomIdsOfImage))
         ];
     }
 }
