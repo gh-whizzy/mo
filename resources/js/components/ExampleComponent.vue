@@ -4,10 +4,13 @@
         <div>
             <!-- {{ fields.data }} {{ fields }} -->
         </div>
+        <br>
 
         <div v-for="field in fields">
-            Playlist: {{ field.id }}
+            PLAYLIST: {{ field.id }}
             <br>
+            PLAYLIST NAME: {{ field.playlist_name }}
+            <br><br>
 
             <!-- {{ field.media }} -->
             <div v-for="media in JSON.parse(field.media)">
