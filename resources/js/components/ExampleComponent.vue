@@ -6,6 +6,7 @@
         </button>
         <br><br>
 
+
         <div v-for="playlist in playlists">
        
             PLAYLIST NAME: {{ playlist.playlist_name }}
@@ -13,25 +14,24 @@
         
 
             <!-- {{ playlist.media }} -->
-            <button>
-                View
-            </button>
+            <button @click="viewPlaylist(playlist)">View {{playlist.id}} </button>
             <button>
                 Edit
             </button>
             <button>
                 Delete
             </button>
-            <div v-for="media in JSON.parse(playlist.media)">
+            <!-- <div v-for="media in JSON.parse(playlist.media)"> -->
                 
                 <!-- NAME: {{ media.media_name }}
                 <br>
                 TYPE: {{ media.media_type}} -->
                 
-            </div>
+            <!-- </div> -->
             <br>
         </div>
         
+        <single-playlist v-show="showPlaylist" :test=this.selectedPlaylist />
         
     </div>
 </template>
@@ -43,7 +43,19 @@
         data() {
             return {
                 playlists: null,
-                errors: null
+                errors: null,
+
+                showPlaylist: null,
+                selectedPlaylist: null
+            }
+        },
+
+        methods: {
+            viewPlaylist(playlist) {
+                console.log(playlist);
+                this.showPlaylist = true;
+                this.selectedPlaylist = playlist;
+                console.log(this.selectedPlaylist);
             }
         },
 
