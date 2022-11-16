@@ -9,6 +9,7 @@
   
 
         <div v-show="library" v-for="playlist in playlists">
+
        
             PLAYLIST NAME: {{ playlist.playlist_name }}
             <br>
@@ -34,9 +35,9 @@
             <br>
         </div>
         
-        <single-playlist v-if="showSinglePlaylist" :test=this.selectedPlaylist />
+        <single-playlist v-if="showSinglePlaylist" :test="this.selectedPlaylist" />
 
-        <edit-playlist v-if="editPlaylist" />
+        <edit-playlist v-if="editPlaylist" :test="this.selectedPlaylist" />
         
     </div>
 </template>

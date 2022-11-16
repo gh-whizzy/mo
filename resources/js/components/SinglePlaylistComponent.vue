@@ -6,6 +6,7 @@
         <div>{{ test.playlist_type }}</div>
         <div>{{ JSON.parse(test.media) }}</div>
         <div>{{ test.created_by}}</div>
+        {{test}}
 
     </div>
 </template>
