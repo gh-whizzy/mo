@@ -1,23 +1,35 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
+    <div>
+        <div v-for="field in fields">
+            <div>{{ field.id }}</div>
+            <div>{{ field.playlist_name }}</div>
+            <div>{{ field.playlist_type }}</div>
+            <div>{{ field.created_by }}</div>
+            <div>{{ field.media }}</div>
         </div>
+        <div>{{ errors }}</div>
+        
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
+
     export default {
+        data() {
+            return {
+                fields: null,
+                errors: null
+            }
+        },
+
         mounted() {
-            console.log('Component mounted.')
+            console.log('mounted')
+            axios.get('/getAllPlaylists').then((response) => {
+                this.fields = response.data;
+            }).catch((error) => {
+                this.erros = error;
+            })
         }
     }
 </script>
