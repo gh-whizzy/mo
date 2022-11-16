@@ -5,6 +5,7 @@
             Create
         </button>
         <br><br>
+        <single-playlist v-if="showPlaylist" :test=this.selectedPlaylist />
 
 
         <div v-for="playlist in playlists">
@@ -31,7 +32,7 @@
             <br>
         </div>
         
-        <single-playlist v-show="showPlaylist" :test=this.selectedPlaylist />
+        
         
     </div>
 </template>

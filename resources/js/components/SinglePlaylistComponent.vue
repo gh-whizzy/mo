@@ -1,9 +1,10 @@
 <template>
-    <div @click="showData()">
+    <div>
+        <button @click="closePlaylist">Close</button>
         single playlist
         <div>{{ test.playlist_name }}</div>
         <div>{{ test.playlist_type }}</div>
-        <div>{{ test.media }}</div>
+        <div>{{ JSON.parse(test.media) }}</div>
         <div>{{ test.created_by}}</div>
 
     </div>
@@ -17,8 +18,8 @@ export default {
     },
 
     methods: {
-        showData() {
-            // console.log(this.$props.test.selectedPlaylist)
+        closePlaylist() {
+            this.$parent.showPlaylist = false;
         }
     },
 
