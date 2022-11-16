@@ -19,7 +19,8 @@ export default {
 
     methods: {
         closePlaylist() {
-            this.$parent.showPlaylist = false;
+            this.$parent.showSinglePlaylist = false;
+            this.$parent.library = true;
         }
     },
 

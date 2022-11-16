@@ -17,8 +17,10 @@ const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
 import SinglePlaylistComponent from './components/SinglePlaylistComponent.vue';
+import EditPlaylistComponent from './components/EditPlaylistComponent.vue';
 app.component('example-component', ExampleComponent);
-app.component('single-playlist', SinglePlaylistComponent)
+app.component('single-playlist', SinglePlaylistComponent);
+app.component('edit-playlist', EditPlaylistComponent);
 
 
 /**

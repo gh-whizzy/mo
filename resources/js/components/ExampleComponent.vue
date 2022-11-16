@@ -5,18 +5,20 @@
             Create
         </button>
         <br><br>
-        <single-playlist v-if="showPlaylist" :test=this.selectedPlaylist />
 
+  
 
-        <div v-for="playlist in playlists">
+        <div v-show="library" v-for="playlist in playlists">
        
             PLAYLIST NAME: {{ playlist.playlist_name }}
             <br>
+
+            
         
 
             <!-- {{ playlist.media }} -->
             <button @click="viewPlaylist(playlist)">View {{playlist.id}} </button>
-            <button>
+            <button @click="editForm(playlist)">
                 Edit
             </button>
             <button>
@@ -32,7 +34,9 @@
             <br>
         </div>
         
-        
+        <single-playlist v-if="showSinglePlaylist" :test=this.selectedPlaylist />
+
+        <edit-playlist v-if="editPlaylist" />
         
     </div>
 </template>
@@ -46,17 +50,30 @@
                 playlists: null,
                 errors: null,
 
-                showPlaylist: null,
-                selectedPlaylist: null
+                showSinglePlaylist: false,
+                selectedPlaylist: null,
+
+                editPlaylist: false,
+
+                library: true
+
+      
             }
         },
 
         methods: {
             viewPlaylist(playlist) {
                 console.log(playlist);
-                this.showPlaylist = true;
+                this.showSinglePlaylist = true;
+                this.library = false;
                 this.selectedPlaylist = playlist;
                 console.log(this.selectedPlaylist);
+            },
+            
+            editForm(playlist) {
+                console.log(playlist.id);
+                this.editPlaylist = true;
+                this.library = false;
             }
         },
 
