@@ -68,7 +68,7 @@
             viewPlaylist(playlist) {
                 // console.log('json parse')
                 // console.log(JSON.parse(playlist.media));
-                axios.get('/playlist/' + JSON.parse(playlist.media)).then((response) => {
+                axios.get('/playlist/' + playlist.media).then((response) => {
                     console.log(response.data);
                     this.playlistMedia = response.data;
                     console.log(this.playlistMedia);

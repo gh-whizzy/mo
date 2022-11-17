@@ -90,4 +90,70 @@ class PlaylistController extends Controller
         // Log::info($request);
         // return redirect('/');
     }
+
+    public function deleteMediaFromPlaylist(Request $request) 
+    {
+        // dd($request);
+        
+
+        $playlistId = $request->playlist_id;
+        $mediaId = $request->media_id;
+
+        // Log::info($mediaId);
+
+        // // dd($playlistId);
+
+        $playlist = Playlist::find($playlistId);
+        Log::info($playlist);
+        dd($playlist->media);
+        // // dd($playlist);
+        // // remove [ and ] from string
+        // // dd($playlist->media);
+        // $playlistMediaArray = explode(',', trim(str_replace(" ", "", $playlist->media), "[]"));
+        // // dd($playlistMediaArray);
+
+
+        // foreach ($playlistMediaArray as $i) {
+        //     Log::info($i);
+        //     if ($mediaId == $i) {
+        //         Log::info('yes');
+        //         unset($playlistMediaArray[$i]);
+        //     } else {
+        //         Log::info('no');
+        //     }
+            
+        // } 
+        
+
+        // dd($oldMediaArray);
+        // get playlist media array
+        // $playlistMediaArray = explode(',', str_replace('[', ']', '', $playlist->media));
+        // dd($playlistMediaArray);
+
+
+        // Log::info(Playlist::find($playlistId));
+
+        // $playlist = Playlist::find($playlistId);
+
+        // $playlistMedia = $playlist->media;
+
+        // $explodedMedia = explode(',', $playlistMedia);
+        // // dd(gettype($explodedMedia));
+        // foreach($explodedMedia as $id) 
+        // {
+        //     // Log::info($mediaId);
+        //     if ($id == $mediaId) 
+        //     {
+        //         //remove id num from media
+        //         unset($explodedMedia[$mediaId]);
+        //     }
+        // }
+        // Log::info($explodedMedia);
+        // $explodedMedia->save();
+        // dd($request);
+        // find media in playlist table and delete it
+
+        // $mediaArray = Media::all('id');
+        // dd($mediaArray);
+    }
 }

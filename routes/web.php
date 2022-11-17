@@ -25,3 +25,4 @@ Route::get('/getAllPlaylists', [App\Http\Controllers\PlaylistController::class, 
 Route::get('/playlist/{id}', [App\Http\Controllers\PlaylistController::class, 'playlist'])->name('playlist');
 Route::get('/test/{id}', [App\Http\Controllers\PlaylistController::class, 'test'])->name('test');
 Route::post('/editPlaylist', [App\Http\Controllers\PlaylistController::class, 'editPlaylist']);
+Route::post('/deleteMediaFromPlaylist', [App\Http\Controllers\PlaylistController::class, 'deleteMediaFromPlaylist']);
