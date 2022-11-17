@@ -6,18 +6,21 @@
         <div>{{ test.created_by }}</div>
         <div>{{ test.playlist_name }}</div>
         <div>{{ test.playlist_type }}</div>
-        {{test.media}}
+        <!-- {{test.media}} -->
         <!-- <div>{{ JSON.parse(test.media) }}</div> -->
-        <div v-for="media in test.media">
-            MEDIA NAME: {{media.media_name}}
+
+        {{ media }}
+
+        <!-- <div v-for="stuff in media.media">
+            MEDIA NAME: {{stuff.media_name}}
             <br>
-            TYPE: {{media.media_type}}
+            TYPE: {{stuff.media_type}}
             <br>
-            CREATED AT: {{media.created_at}}
+            CREATED AT: {{stuff.created_at}}
             <button>Delete</button>            
             <br><br>
 
-        </div>
+        </div> -->
         <br>
 
 
@@ -38,6 +41,6 @@ export default {
         }
     },
 
-    props: ['test']
+    props: ['test', 'media']
 }
 </script>
