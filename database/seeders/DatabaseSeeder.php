@@ -14,9 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-        \App\Models\Media::factory(1000)->create();
-        \App\Models\Playlist::factory(20)->create();
+        // \App\Models\User::factory(10)->create();
+        // \App\Models\Media::factory(20)->create([
+        //     'media_id' => 2,
+        //     'media_name' => 'djklflsdka',
+        //     'media_type' => 'fjghfdkgs',
+        //     'file_path' => 'dfjklhgjkldfs'
+        // ]);
+        // \App\Models\Playlist::factory(5)->create([
+        //     'playlist_name' => 'jhkgjg',
+        //     'playlist_type' => 'gkujhdfjsh',
+        //     'created_by' => 'sdhkfgsjld',
+        // ]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

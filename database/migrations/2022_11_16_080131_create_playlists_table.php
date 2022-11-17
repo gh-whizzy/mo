@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('playlist_id');
             $table->string('playlist_name');
             $table->text('playlist_type');
             $table->string('created_by');
-            $table->json('media')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \App\Models\Media;
 
 class Playlist extends Model
 {
@@ -16,7 +17,12 @@ class Playlist extends Model
         'media'
     ];
 
-    protected $casts = [
-        'media' => 'array'
-    ];
+
+        /**
+     * Get the comments for the blog post.
+     */
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
 }

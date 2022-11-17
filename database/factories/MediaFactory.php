@@ -16,10 +16,10 @@ class MediaFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'media_name' => fake()->name(),
-            'media_type' => fake()->randomElement(['video', 'audio', 'images']),
-            'file_path' => fake()->url()
-        ];
+        // return [
+        //     'media_name' => fake()->name(),
+        //     'media_type' => fake()->randomElement(['video', 'audio', 'images']),
+        //     'file_path' => fake()->url()
+        // ];
     }
 }

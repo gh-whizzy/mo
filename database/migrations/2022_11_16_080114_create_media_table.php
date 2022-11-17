@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('playlist_id');
             $table->string('media_name');
             $table->string('media_type');
             $table->string('file_path');
