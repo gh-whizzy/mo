@@ -6,7 +6,7 @@
 
 
             
-            PLAYLIST NAME: 
+            PLAYLIST NAME: {{newPlaylistNameInput}}
             <input type="text" v-model="newPlaylistNameInput">
 
             <br><br>
@@ -15,7 +15,7 @@
             <select name="" id="" v-model="newPlaylistType">
                 <option value="video">Video</option>
                 <option value="audio">Audio</option>
-                <option value="images">Images</option>
+                <option value="image">Images</option>
             </select>
 
             CREATED BE AUTO
@@ -40,7 +40,6 @@ export default {
 
     methods: {
         close() {
-            console.log('closed');
             this.$parent.createPlaylistComponent = false;
             this.$parent.library = true;
         },

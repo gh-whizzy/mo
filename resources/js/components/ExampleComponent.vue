@@ -2,13 +2,14 @@
     <div>
         <!-- <div v-show="errors">{{ errors }}</div> -->
 
-        <button @click="createPlaylist()" class="container">
-            Create
-        </button>
+        
 
-        <br><br>
+        <br>
 
         <div v-show="library" class="container">
+            <button @click="createPlaylist()" class="container">
+            Create
+        </button>
             <div v-for="playlist in playlistData" class="container">
                 PLAYLIST ID: {{ playlist.id }} <br>
                 PLAYLIST NAME: {{ playlist.playlist_name }}<br>
@@ -29,7 +30,7 @@
         </div>
 
 
-        <!-- <create-playlist v-if="createPlaylistComponent" /> -->
+        <create-playlist v-if="createPlaylistComponent" />
   
         <!-- <div v-show="library">
         <button @click="createPlaylist()">
@@ -92,11 +93,11 @@
             props: ['playlists'],
 
 
-        // methods: {
-            // createPlaylist() {
-            //     this.createPlaylistComponent = true;
-            //     this.library = false;
-            // },
+        methods: {
+            createPlaylist() {
+                this.createPlaylistComponent = true;
+                this.library = false;
+            },
             // viewPlaylist(playlist) {
             //     // console.log('json parse')
             //     // console.log(JSON.parse(playlist.media));
@@ -129,6 +130,6 @@
             //         playlistId: id
             //     }).then(res=>console.log(res))
         //     }
-        // },
+        },
     }
 </script>

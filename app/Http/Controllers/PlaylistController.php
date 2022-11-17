@@ -66,9 +66,12 @@ class PlaylistController extends Controller
     public function createNewPlaylist(Request $request)
     {
         $playlist = new Playlist;
+        
         $playlist->playlist_name = $request->newPlaylistName;
         $playlist->playlist_type = $request->playlistType;
         $playlist->created_by = Auth::user()->name;
+
+        $playlist->playlist_id = Playlist::max('id') + 1;
         $playlist->save();
 
         // $user_name = Auth::user()->name;
