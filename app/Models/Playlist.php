@@ -15,4 +15,8 @@ class Playlist extends Model
         'created_by',
         'media'
     ];
+
+    protected $casts = [
+        'media' => 'array'
+    ];
 }

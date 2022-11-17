@@ -29,7 +29,7 @@ class PlaylistFactory extends Factory
         $randomIdsOfVideo = Media::all()->where('media_type', 'video')->random(10)->pluck('id');
         $randomIdsOfImage = Media::all()->where('media_type', 'images')->random(10)->pluck('id');
         $randomMediaType = Media::all()->random(1)->pluck('media_type');
-        Log::info($randomMediaType[0]);
+        // Log::info(array ($randomIdsOfAudio));
 
 
         // Log::info(Media::all()->random(1)->pluck('media_type'));
