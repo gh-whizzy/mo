@@ -1,13 +1,17 @@
 <template>
     <div>
         <div v-show="errors">{{ errors }}</div>
-        <button>
-            Create
-        </button>
+  
+
         <br><br>
 
+
+        <create-playlist v-if="createPlaylistComponent" />
   
         <div v-show="library">
+        <button @click="createPlaylist()">
+            Create
+        </button>
             <div v-for="playlist in playlists">
                 
         
@@ -58,13 +62,20 @@
                 playlistMedia: null,
                 editPlaylist: false,
 
-                library: true
+                library: true,
 
+
+                createPlaylistComponent: false
       
             }
         },
 
         methods: {
+            createPlaylist() {
+                console.log('clicked');
+                this.createPlaylistComponent = true;
+                this.library = false;
+            },
             viewPlaylist(playlist) {
                 // console.log('json parse')
                 // console.log(JSON.parse(playlist.media));

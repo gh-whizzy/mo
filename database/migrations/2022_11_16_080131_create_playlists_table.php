@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('playlist_name');
             $table->text('playlist_type');
             $table->string('created_by');
-            $table->json('media');
+            $table->json('media')->nullable();
             $table->timestamps();
         });
     }

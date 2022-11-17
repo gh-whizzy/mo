@@ -27,3 +27,7 @@ Route::get('/test/{id}', [App\Http\Controllers\PlaylistController::class, 'test'
 Route::post('/editPlaylist', [App\Http\Controllers\PlaylistController::class, 'editPlaylist']);
 Route::post('/deletePlaylist', [App\Http\Controllers\PlaylistController::class, 'deletePlaylist']);
 Route::post('/deleteMediaFromPlaylist', [App\Http\Controllers\PlaylistController::class, 'deleteMediaFromPlaylist']);
+Route::post('/createNewPlaylist', [App\Http\Controllers\PlaylistController::class, 'createNewPlaylist']);
+
+
+
