@@ -71,7 +71,7 @@ class PlaylistController extends Controller
         $playlist->playlist_type = $request->playlistType;
         $playlist->created_by = Auth::user()->name;
 
-        $playlist->playlist_id = Playlist::max('playlist_id') + 1;
+        $playlist->id = Media::max('playlist_id') + 1;
         $playlist->save();
 
         // $user_name = Auth::user()->name;

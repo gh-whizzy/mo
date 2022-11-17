@@ -20,7 +20,7 @@ class Media extends Model
 
     public function playlist() 
     {
-        return $this->belongsTo(Playlist::class, 'playlist_id', 'id');
+        return $this->belongsTo(Playlist::class);
     }
 
 

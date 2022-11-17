@@ -26,7 +26,7 @@ class MediaFactory extends Factory
         //     'file_path' => fake()->words()
         // ];
         return [
-            'playlist_id' => random_int(1, 20),
+            'playlist_id' => random_int(1, 5),
             'media_name' => fake()->word(),
             'media_type' => fake()->randomElement(['video', 'audio', 'images']),
             'file_path' => fake()->url()

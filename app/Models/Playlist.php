@@ -11,7 +11,7 @@ class Playlist extends Model
     use HasFactory;
     
     protected $fillable = [
-        'playlist_id',
+        // 'playlist_id',
         'playlist_name',
         'playlist_type',
         'created_by',
@@ -19,7 +19,7 @@ class Playlist extends Model
 
 
         /**
-     * Get the comments for the blog post.
+     * Get the media for the playlist.
      */
     public function media()
     {

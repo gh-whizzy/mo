@@ -22,7 +22,7 @@ class PlaylistFactory extends Factory
     {
         
         return [
-            'playlist_id' => random_int(1, 20),
+            // 'playlist_id' => random_int(1, 20),
             'playlist_name' => fake()->word(),
             'playlist_type' => fake()->randomElement(['video', 'audio', 'image']),
             'created_by' => User::all()->random()->name,
