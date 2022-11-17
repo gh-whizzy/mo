@@ -18,13 +18,18 @@ class PlaylistFactory extends Factory
      */
     public function definition()
     {
-        $randomIdsOfAudio = Media::all()->where('media_type', 'audio')->random(10);
-        $randomIdsOfVideo = Media::all()->where('media_type', 'video')->random(10);
-        $randomIdsOfImage = Media::all()->where('media_type', 'images')->random(10);
+        
 
+        
+
+        // get MEDIA table, find a random amount of media ids based on media type
+        // store array in PLAYLIST table column media
+
+        $randomIdsOfAudio = Media::all()->where('media_type', 'audio')->random(10)->pluck('id');
+        $randomIdsOfVideo = Media::all()->where('media_type', 'video')->random(10)->pluck('id');
+        $randomIdsOfImage = Media::all()->where('media_type', 'images')->random(10)->pluck('id');
         $randomMediaType = Media::all()->random(1)->pluck('media_type');
         Log::info($randomMediaType[0]);
-        
 
 
         // Log::info(Media::all()->random(1)->pluck('media_type'));
