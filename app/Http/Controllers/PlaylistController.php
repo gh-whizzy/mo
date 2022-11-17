@@ -91,6 +91,14 @@ class PlaylistController extends Controller
         // return redirect('/');
     }
 
+    public function deletePlaylist(Request $request)
+    {
+        $id = $request->playlistId;
+        // dd($id);
+
+        Playlist::find($id)->delete();
+    }
+
     public function deleteMediaFromPlaylist(Request $request) 
     {
         

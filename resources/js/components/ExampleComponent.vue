@@ -22,7 +22,7 @@
                 <button @click="editForm(playlist)">
                     Edit
                 </button>
-                <button>
+                <button @click="deletePlaylist(playlist.id)">
                     Delete
                 </button>
                 <!-- <div v-for="media in JSON.parse(playlist.media)"> -->
@@ -90,6 +90,12 @@
                     this.selectedPlaylist = res.data;
                     // console.log(this.selectedPlaylist)
                 });
+            },
+
+            deletePlaylist(id) {
+                axios.post('/deletePlaylist', {
+                    playlistId: id
+                }).then(res=>console.log(res))
             }
         },
 
