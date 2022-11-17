@@ -11,7 +11,9 @@
             Create
         </button>
             <div v-for="playlist in playlistData" class="container">
-                PLAYLIST ID: {{ playlist.id }} <br>
+                ID: {{ playlist.id }} <br>
+                PLAYLIST ID: {{ playlist.playlist_id }} <br>
+
                 PLAYLIST NAME: {{ playlist.playlist_name }}<br>
                 PLAYLIST TYPE: {{ playlist.playlist_type }}<br>
                 PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
