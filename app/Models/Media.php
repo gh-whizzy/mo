@@ -13,7 +13,6 @@ class Media extends Model
 
     protected $fillable = [
         'playlist_id',
-        // 'media_id',
         'media_name',
         'media_type',
         'file_path'

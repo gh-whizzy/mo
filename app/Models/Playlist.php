@@ -11,10 +11,10 @@ class Playlist extends Model
     use HasFactory;
     
     protected $fillable = [
+        'playlist_id',
         'playlist_name',
         'playlist_type',
         'created_by',
-        'media'
     ];
 
 

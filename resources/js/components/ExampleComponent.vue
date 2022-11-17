@@ -21,8 +21,10 @@
                     MEDIA NAME: {{ media.media_name }}<br>
                     MEDIA TYPE: {{ media.media_type }}<br>
                 </div>
-                <br><br>
-
+                <br>
+                <button>VIEW</button>
+                <button>EDIT</button>
+                <button>DELETE</button>
             </div>
         </div>
 

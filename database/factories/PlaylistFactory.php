@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Media;
+use App\Models\User;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Log;
 
@@ -19,7 +21,12 @@ class PlaylistFactory extends Factory
     public function definition()
     {
         
-
+        return [
+            'playlist_id' => random_int(1, 20),
+            'playlist_name' => fake()->word(),
+            'playlist_type' => fake()->randomElement(['video', 'audio', 'image']),
+            'created_by' => User::all()->random()->name,
+        ];
         
 
         // get MEDIA table, find a random amount of media ids based on media type

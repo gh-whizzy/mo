@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('playlist_id');
+            $table->bigInteger('playlist_id')->unique();
             $table->string('playlist_name');
-            $table->text('playlist_type');
+            $table->string('playlist_type');
             $table->string('created_by');
             $table->timestamps();
         });
