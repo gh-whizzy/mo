@@ -2,12 +2,29 @@
     <div>
         <!-- <div v-show="errors">{{ errors }}</div> -->
 
-        <button @click="createPlaylist()">
+        <button @click="createPlaylist()" class="container">
             Create
         </button>
 
-        <strong>PlaylistData</strong>
-        <div v-show="library">{{ library }}</div>
+        <br><br>
+
+        <div v-show="library" class="container">
+            <div v-for="playlist in playlistData" class="container">
+                PLAYLIST ID: {{ playlist.id }} <br>
+                PLAYLIST NAME: {{ playlist.playlist_name }}<br>
+                PLAYLIST TYPE: {{ playlist.playlist_type }}<br>
+                PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
+                PLAYLIST CREATED AT{{ playlist.created_at}}<br><br>
+                <div v-for="media in playlist.media" class="card">
+                    MEDIA ID: {{ media.id }}<br>
+                    MEDIA PLAYLIST ID: {{ media.playlist_id }}<br>
+                    MEDIA NAME: {{ media.media_name }}<br>
+                    MEDIA TYPE: {{ media.media_type }}<br>
+                </div>
+                <br><br>
+
+            </div>
+        </div>
 
 
         <!-- <create-playlist v-if="createPlaylistComponent" /> -->
@@ -52,7 +69,8 @@
     export default {
         data() {
             return {
-                library: this.playlists
+                library: true,
+                playlistData: JSON.parse(this.playlists)
                 // playlists: null,
                 // errors: null,
 
@@ -110,15 +128,5 @@
             //     }).then(res=>console.log(res))
         //     }
         // },
-
-        mounted() {
-         
-            // axios.get('/getAllPlaylists').then((response) => {
-            //     // console.log(response);
-            //     this.playlists = response.data;
-            // }).catch((error) => {
-            //     this.erros = error;
-            // })
-        }
     }
 </script>
