@@ -37,7 +37,7 @@
         </div>
         
         
-        <single-playlist v-if="showSinglePlaylist" :test="this.selectedPlaylist" />
+        <single-playlist v-if="showSinglePlaylist" :test="this.selectedPlaylist" :media="this.playlistMedia" />
 
         <edit-playlist v-if="editPlaylist" :test="selectedPlaylist" />
         
@@ -55,7 +55,7 @@
 
                 showSinglePlaylist: false,
                 selectedPlaylist: null,
-
+                playlistMedia: null,
                 editPlaylist: false,
 
                 library: true
@@ -66,29 +66,36 @@
 
         methods: {
             viewPlaylist(playlist) {
-                console.log(playlist);
+                // console.log('json parse')
+                // console.log(JSON.parse(playlist.media));
+                axios.get('/playlist/' + JSON.parse(playlist.media)).then((response) => {
+                    console.log(response.data);
+                    this.playlistMedia = response.data;
+                    console.log(this.playlistMedia);
+                })
+
                 this.showSinglePlaylist = true;
                 this.library = false;
                 this.selectedPlaylist = playlist;
-                console.log(this.selectedPlaylist);
+                // console.log(this.selectedPlaylist);
             },
             
             editForm(playlist) {
-                console.log(playlist.id);
+                // console.logJSON.parse(playlist.id);
                 
                 this.library = false;
                 this.editPlaylist = true;
                 axios.get('/test/' + playlist.id).then(res=> {
-                    console.log(res)
+                    // console.log(res)
                     this.selectedPlaylist = res.data;
-                    console.log(this.selectedPlaylist)
+                    // console.log(this.selectedPlaylist)
                 });
             }
         },
 
         mounted() {
             axios.get('/getAllPlaylists').then((response) => {
-                console.log(response);
+                // console.log(response);
                 this.playlists = response.data;
             }).catch((error) => {
                 this.erros = error;

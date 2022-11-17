@@ -22,5 +22,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/getAllPlaylists', [App\Http\Controllers\PlaylistController::class, 'getAllPlaylists'])->name('getAllPlaylists');
+Route::get('/playlist/{id}', [App\Http\Controllers\PlaylistController::class, 'playlist'])->name('playlist');
 Route::get('/test/{id}', [App\Http\Controllers\PlaylistController::class, 'test'])->name('test');
 Route::post('/editPlaylist', [App\Http\Controllers\PlaylistController::class, 'editPlaylist']);
