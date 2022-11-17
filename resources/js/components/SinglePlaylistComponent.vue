@@ -6,6 +6,7 @@
         <div>{{ test.playlist_type }}</div>
         <div>{{ JSON.parse(test.media) }}</div>
         <div>{{ test.created_by}}</div>
+        {{test}}
 
     </div>
 </template>
@@ -19,7 +20,8 @@ export default {
 
     methods: {
         closePlaylist() {
-            this.$parent.showPlaylist = false;
+            this.$parent.showSinglePlaylist = false;
+            this.$parent.library = true;
         }
     },
 

@@ -5,34 +5,41 @@
             Create
         </button>
         <br><br>
-        <single-playlist v-if="showPlaylist" :test=this.selectedPlaylist />
 
-
-        <div v-for="playlist in playlists">
-       
-            PLAYLIST NAME: {{ playlist.playlist_name }}
-            <br>
+  
+        <div v-show="library">
+            <div v-for="playlist in playlists">
+                
         
-
-            <!-- {{ playlist.media }} -->
-            <button @click="viewPlaylist(playlist)">View {{playlist.id}} </button>
-            <button>
-                Edit
-            </button>
-            <button>
-                Delete
-            </button>
-            <!-- <div v-for="media in JSON.parse(playlist.media)"> -->
-                
-                <!-- NAME: {{ media.media_name }}
+                PLAYLIST NAME: {{ playlist.playlist_name }}
                 <br>
-                TYPE: {{ media.media_type}} -->
+
                 
-            <!-- </div> -->
-            <br>
+            
+
+                <!-- {{ playlist.media }} -->
+                <button @click="viewPlaylist(playlist)">View {{playlist.id}} </button>
+                <button @click="editForm(playlist)">
+                    Edit
+                </button>
+                <button>
+                    Delete
+                </button>
+                <!-- <div v-for="media in JSON.parse(playlist.media)"> -->
+                    
+                    <!-- NAME: {{ media.media_name }}
+                    <br>
+                    TYPE: {{ media.media_type}} -->
+                    
+                <!-- </div> -->
+                <br>
+            </div>
         </div>
         
         
+        <single-playlist v-if="showSinglePlaylist" :test="this.selectedPlaylist" />
+
+        <edit-playlist v-if="editPlaylist" :test="selectedPlaylist" />
         
     </div>
 </template>
@@ -46,17 +53,36 @@
                 playlists: null,
                 errors: null,
 
-                showPlaylist: null,
-                selectedPlaylist: null
+                showSinglePlaylist: false,
+                selectedPlaylist: null,
+
+                editPlaylist: false,
+
+                library: true
+
+      
             }
         },
 
         methods: {
             viewPlaylist(playlist) {
                 console.log(playlist);
-                this.showPlaylist = true;
+                this.showSinglePlaylist = true;
+                this.library = false;
                 this.selectedPlaylist = playlist;
                 console.log(this.selectedPlaylist);
+            },
+            
+            editForm(playlist) {
+                console.log(playlist.id);
+                
+                this.library = false;
+                this.editPlaylist = true;
+                axios.get('/test/' + playlist.id).then(res=> {
+                    console.log(res)
+                    this.selectedPlaylist = res.data;
+                    console.log(this.selectedPlaylist)
+                });
             }
         },
 
