@@ -7,6 +7,7 @@ use App\Models\Media;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class PlaylistController extends Controller
@@ -60,6 +61,18 @@ class PlaylistController extends Controller
     {
         $playlist = Playlist::find($id);
         return $playlist;
+    }
+
+    public function createNewPlaylist(Request $request)
+    {
+        $playlist = new Playlist;
+        $playlist->playlist_name = $request->newPlaylistName;
+        $playlist->playlist_type = $request->playlistType;
+        $playlist->created_by = Auth::user()->name;
+        $playlist->save();
+
+        // $user_name = Auth::user()->name;
+        // Log::info($user_name);
     }
 
     public function editPlaylist(Request $request) 
