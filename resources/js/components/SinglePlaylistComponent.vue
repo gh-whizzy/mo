@@ -12,7 +12,8 @@
             TYPE: {{media.media_type}}
             <br>
             CREATED AT: {{media.created_at}}
-            <br><br>
+            <button>Delete</button>            <br><br>
+
         </div>
         <br>
 
