@@ -1,9 +1,11 @@
 <template>
     <div>
         {{test.playlist_name}}
+        
           
 
         <form @submit.prevent="editPlaylist">
+            
             What would you like do edit?
             <br><br>
             
@@ -26,16 +28,22 @@ export default {
     methods: {
         closeForm() {
             this.$parent.editPlaylist = false;
-            this.$parent.showSinglePlaylist = false;
+            // this.$parent.showSinglePlaylist = false;
             this.$parent.library = true;
         },
 
         editPlaylist() {
             axios.post('/editPlaylist', {
-                playlistName: this.playlistNameInput,
+                name: this.playlistNameInput,
                 id: this.$props.test.id
             }).then((response) => {
                 console.log(response);
+                if (response.status == 200) {
+                    alert('Name Changed');
+                    this.$parent.editPlaylist = false;
+                    this.$parent.library = true;
+                }
+
             }).catch((error) => {
                 console.log(error);
             })

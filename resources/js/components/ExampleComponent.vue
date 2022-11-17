@@ -7,37 +7,39 @@
         <br><br>
 
   
-
-        <div v-show="library" v-for="playlist in playlists">
-            
-       
-            PLAYLIST NAME: {{ playlist.playlist_name }}
-            <br>
-
-            
+        <div v-show="library">
+            <div v-for="playlist in playlists">
+                
         
-
-            <!-- {{ playlist.media }} -->
-            <button @click="viewPlaylist(playlist)">View {{playlist.id}} </button>
-            <button @click="editForm(playlist)">
-                Edit
-            </button>
-            <button>
-                Delete
-            </button>
-            <!-- <div v-for="media in JSON.parse(playlist.media)"> -->
-                
-                <!-- NAME: {{ media.media_name }}
+                PLAYLIST NAME: {{ playlist.playlist_name }}
                 <br>
-                TYPE: {{ media.media_type}} -->
+
                 
-            <!-- </div> -->
-            <br>
+            
+
+                <!-- {{ playlist.media }} -->
+                <button @click="viewPlaylist(playlist)">View {{playlist.id}} </button>
+                <button @click="editForm(playlist)">
+                    Edit
+                </button>
+                <button>
+                    Delete
+                </button>
+                <!-- <div v-for="media in JSON.parse(playlist.media)"> -->
+                    
+                    <!-- NAME: {{ media.media_name }}
+                    <br>
+                    TYPE: {{ media.media_type}} -->
+                    
+                <!-- </div> -->
+                <br>
+            </div>
         </div>
+        
         
         <single-playlist v-if="showSinglePlaylist" :test="this.selectedPlaylist" />
 
-        <edit-playlist v-if="editPlaylist" :test="this.selectedPlaylist" />
+        <edit-playlist v-if="editPlaylist" :test="selectedPlaylist" />
         
     </div>
 </template>
@@ -73,8 +75,14 @@
             
             editForm(playlist) {
                 console.log(playlist.id);
-                this.editPlaylist = true;
+                
                 this.library = false;
+                this.editPlaylist = true;
+                axios.get('/test/' + playlist.id).then(res=> {
+                    console.log(res)
+                    this.selectedPlaylist = res.data;
+                    console.log(this.selectedPlaylist)
+                });
             }
         },
 
