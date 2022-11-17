@@ -18,22 +18,27 @@
                 PLAYLIST TYPE: {{ playlist.playlist_type }}<br>
                 PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
                 PLAYLIST CREATED AT{{ playlist.created_at}}<br><br>
-                <div v-for="media in playlist.media" class="card">
-                    MEDIA ID: {{ media.id }}<br>
-                    MEDIA PLAYLIST ID: {{ media.playlist_id }}<br>
-                    MEDIA NAME: {{ media.media_name }}<br>
-                    MEDIA TYPE: {{ media.media_type }}<br>
-                </div>
+                
+                <button @click="viewMedia(playlist.id)">VIEW</button>
+
+                
+                
+                    <!-- <div v-for="media in playlist.media" class="card">
+                        MEDIA ID: {{ media.id }}<br>
+                        MEDIA PLAYLIST ID: {{ media.playlist_id }}<br>
+                        MEDIA NAME: {{ media.media_name }}<br>
+                        MEDIA TYPE: {{ media.media_type }}<br>
+                    </div> -->
                 <br>
-                <button>VIEW</button>
-                <button>EDIT</button>
-                <button>DELETE</button>
+                <button @click="editPlaylist(playlist)">EDIT</button>
+                <button @click="deletePlaylist(playlist.id)">DELETE</button>
             </div>
         </div>
 
 
         <create-playlist v-if="createPlaylistComponent" />
-  
+        <single-playlist v-if="showSinglePlaylist" :media="singlePlaylistMedia"/>
+        <edit-playlist v-if="showEditPlaylist" :test="playlistToEdit" />
         <!-- <div v-show="library">
         <button @click="createPlaylist()">
             Create
@@ -75,7 +80,9 @@
         data() {
             return {
                 library: true,
-                playlistData: JSON.parse(this.playlists)
+                playlistData: JSON.parse(this.playlists),
+                showSinglePlaylist: false,
+                showEditPlaylist: false,
                 // playlists: null,
                 // errors: null,
 
@@ -87,7 +94,12 @@
                 // library: true,
 
 
-                // createPlaylistComponent: false,
+                createPlaylistComponent: false,
+
+
+
+                singlePlaylistMedia: null,
+                playlistToEdit: null
 
       
             }
@@ -96,9 +108,27 @@
 
 
         methods: {
+            editPlaylist(selectedPlaylist) {
+                console.log(selectedPlaylist);
+                this.showEditPlaylist = true;
+                this.library = false;
+                this.createPlaylistComponent = false;
+                this.playlistToEdit = selectedPlaylist;
+                console.log(this.playlistToEdit);
+            },
+            viewMedia(id) {
+                this.showSinglePlaylist = true;
+                this.library = false;
+                this.showEditPlaylist = false;
+
+                axios.get('/getPlaylist/' + id).then((response) => {
+                    this.singlePlaylistMedia = response.data;
+                })
+            },
             createPlaylist() {
                 this.createPlaylistComponent = true;
                 this.library = false;
+                this.showEditPlaylist = false;
             },
             // viewPlaylist(playlist) {
             //     // console.log('json parse')
@@ -127,11 +157,11 @@
             //     });
             // },
 
-            // deletePlaylist(id) {
-            //     axios.post('/deletePlaylist', {
-            //         playlistId: id
-            //     }).then(res=>console.log(res))
-        //     }
+            deletePlaylist(id) {
+                axios.post('/deletePlaylist', {
+                    playlistId: id
+                }).then(res=>console.log(res))
+            }
         },
     }
 </script>

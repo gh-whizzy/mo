@@ -42,6 +42,8 @@ export default {
         close() {
             this.$parent.createPlaylistComponent = false;
             this.$parent.library = true;
+            this.$parent.showEditPlaylist = false;
+
             location.reload();
         },
 

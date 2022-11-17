@@ -1,6 +1,15 @@
 <template>
     <div>
-        <strong>Single playlist</strong>
+        <strong>Single Playlist</strong>
+        <div v-for="file in media">
+            {{ file.id }}
+            {{ file.playlist_id }}
+            {{ file.media_name }}
+            {{ file.media_type }}    
+        </div>
+        <button @click="close()">Close</button>
+
+        <!-- <strong>Single playlist</strong>
         <br>
         <button @click="closePlaylist">Close</button>
         <div>{{test.id}}</div>
@@ -8,11 +17,7 @@
         <div>{{ test.playlist_name }}</div>
         <div>{{ test.playlist_type }}</div>
         <br><br>
-        <!-- {{test.media}} -->
-        <!-- <div>{{ JSON.parse(test.media) }}</div> -->
 
-        <!-- {{ media }} -->
-        
         <div v-for="(mediaData, index) in media">
             <div>{{ index+1 }} </div>
             <div>MEDIA ID: {{ mediaData.id }}</div>
@@ -25,18 +30,9 @@
             
         </div>
 
-        <!-- <div v-for="stuff in media.media">
-            MEDIA NAME: {{stuff.media_name}}
-            <br>
-            TYPE: {{stuff.media_type}}
-            <br>
-            CREATED AT: {{stuff.created_at}}
-            <button>Delete</button>            
-            <br><br>
 
-        </div> -->
         <br>
-
+ -->
 
     </div>
 </template>
@@ -49,22 +45,27 @@ export default {
     },
 
     methods: {
-        closePlaylist() {
-            this.$parent.showSinglePlaylist = false;
+        close() {
             this.$parent.library = true;
+            this.$parent.showSinglePlaylist = false;
+            this.$parent.showEditPlaylist = false;
         },
+        // closePlaylist() {
+        //     this.$parent.showSinglePlaylist = false;
+        //     this.$parent.library = true;
+        // },
 
-        deleteFromPlaylist(playlistId, mediaId) {
-            // console.log(id);
-            console.log(playlistId)
-            console.log(mediaId);
-            axios.post('/deleteMediaFromPlaylist', {
-                playlistId: playlistId,
-                mediaId: mediaId
-            }).then(res=>console.log(res))
-        }
+        // deleteFromPlaylist(playlistId, mediaId) {
+        //     // console.log(id);
+        //     console.log(playlistId)
+        //     console.log(mediaId);
+        //     axios.post('/deleteMediaFromPlaylist', {
+        //         playlistId: playlistId,
+        //         mediaId: mediaId
+        //     }).then(res=>console.log(res))
+        // }
     },
 
-    props: ['test', 'media']
+    props: ['media']
 }
 </script>
