@@ -59,8 +59,8 @@ export default {
             console.log(playlistId)
             console.log(mediaId);
             axios.post('/deleteMediaFromPlaylist', {
-                playlist_id: playlistId,
-                media_id: mediaId
+                playlistId: playlistId,
+                mediaId: mediaId
             }).then(res=>console.log(res))
         }
     },

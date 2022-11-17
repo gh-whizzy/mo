@@ -93,19 +93,128 @@ class PlaylistController extends Controller
 
     public function deleteMediaFromPlaylist(Request $request) 
     {
+        
+        $id_playlist = $request->playlistId;
+        $input_media = $request->mediaId;
+
+        $playlist = Playlist::find($id_playlist);
+        // dd($playlist);
+
+        $hello= $playlist->media;
+        // Log::info("before");
+
+        // Log::info($hello);
+        foreach($hello as $key=>$value) 
+        {
+            // Log::info($key);
+            if ($input_media === $value) {
+                unset($hello[$key]);
+            }
+        }
+        // Log::info("after");
+        
+        // Log::info($hello);
+        // Log::info(json_encode($hello));
+
+        $list=[];
+
+        foreach($hello as $k=>$v) {
+            array_push($list, $v);
+        }
+
+
+        $playlist->update([
+            'playlist_name' => 'changed',
+            'media' => $list
+        ]);
+
+        
+
+        
+        // // dd($playlist);
+        // // remove [ and ] from string
+        // // dd($playlist->media);
+        // $playlistMediaArray = explode(',', trim(str_replace(" ", "", $playlist->media), "[]"));
+        // // dd($playlistMediaArray);
+
+
+        // foreach ($playlistMediaArray as $i) {
+        //     Log::info($i);
+        //     if ($mediaId == $i) {
+        //         Log::info('yes');
+        //         unset($playlistMediaArray[$i]);
+        //     } else {
+        //         Log::info('no');
+        //     }
+            
+        // } 
+
+        
+
+
+
+    //     $data = array(
+    //     0 => "hello",
+    //     "description" => "test test test"
+    //   );
+
+    //     // $test = array (1,3,5);
+    //     $media = Playlist::find(2);
+    //     $media->update([
+    //         "playlist_name" => 'fdfads',
+    //         "playlist_type" => "tfgjkdfs",
+    //         "created_by" => 'fdjoifds',
+    //         "media" => [0=>[2]]
+    //     ]);
+        // Log::info(gettype($media->media));
+        // $media->media->update();
+        // $media->media->update([1=>1]);
+
+
+        // $media->update([
+        //     'playlist_name' => 'test'
+        // ]);
+
+
         // dd($request);
         
 
-        $playlistId = $request->playlist_id;
-        $mediaId = $request->media_id;
+        // $playlistId = $request->playlist_id;
+        // $mediaId = $request->media_id;
 
-        // Log::info($mediaId);
 
-        // // dd($playlistId);
 
-        $playlist = Playlist::find($playlistId);
-        Log::info($playlist);
-        dd($playlist->media);
+        // $playlist = Playlist::find($playlistId);
+
+        // // $dataArray = $playlist->media;
+        // Log::info($playlist->media);
+        // $playlist->update([
+        //     'playlist_mame' => 'gary'
+        // ]);
+        // $test= null;
+        // foreach ($playlist->media as $key=>$media) {
+        //     // Log::info($key+1);
+        //     if ($media === $mediaId) {
+        //         // Log::info('yes');
+        //         unset($playlist->media[$key]);
+
+        //         // $test = $playlist->media;
+        //         // Log::info($playlist->media);
+
+                
+                
+        //     } else {
+        //         // Log::info('no');
+        //     }
+        // }
+        // // $playlist->media->delete();
+        // Log::info($test);
+        // $playlist->update([
+        //     'playlist_name' => 'gaz'
+        // ]);
+
+        // $dataArray->update();
+        // dd($dataArray);
         // // dd($playlist);
         // // remove [ and ] from string
         // // dd($playlist->media);
