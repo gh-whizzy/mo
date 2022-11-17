@@ -1,11 +1,12 @@
 <template>
-    {{test.id}}
+        <button @click="close()">Close</button>
+<br>
     <strong>Edit Playlist: {{ test.playlist_name }} </strong>
 
 
 
 
-     <form @submit.prevent="editPlaylist(test)" class="card">
+     <form @submit.prevent="editPlaylist(test)">
 
             PLAYLIST NAME: 
             <input type="text" v-model="newPlaylistName">
@@ -13,7 +14,6 @@
 
             <button type="submit">Submit</button>
         </form>
-        <button @click="close()">Close</button>
 </template>
 
 <script>

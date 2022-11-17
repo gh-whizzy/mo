@@ -7,29 +7,15 @@
         <br>
 
         <div v-show="library" class="container">
-            <button @click="createPlaylist()" class="container">
+            <button @click="createPlaylist()">
             Create
         </button>
             <div v-for="playlist in playlistData" class="container">
-                ID: {{ playlist.id }} <br>
-                PLAYLIST ID: {{ playlist.playlist_id }} <br>
-
                 PLAYLIST NAME: {{ playlist.playlist_name }}<br>
                 PLAYLIST TYPE: {{ playlist.playlist_type }}<br>
                 PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
                 PLAYLIST CREATED AT{{ playlist.created_at}}<br><br>
-                
                 <button @click="viewMedia(playlist.id)">VIEW</button>
-
-                
-                
-                    <!-- <div v-for="media in playlist.media" class="card">
-                        MEDIA ID: {{ media.id }}<br>
-                        MEDIA PLAYLIST ID: {{ media.playlist_id }}<br>
-                        MEDIA NAME: {{ media.media_name }}<br>
-                        MEDIA TYPE: {{ media.media_type }}<br>
-                    </div> -->
-                <br>
                 <button @click="editPlaylist(playlist)">EDIT</button>
                 <button @click="deletePlaylist(playlist.id)">DELETE</button>
             </div>

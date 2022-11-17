@@ -1,11 +1,14 @@
 <template>
     <div>
-        <strong>Single Playlist</strong>
+        <strong>Playlists</strong> <button>Add</button>
         <div v-for="file in media">
-            {{ file.id }}
-            {{ file.playlist_id }}
-            {{ file.media_name }}
-            {{ file.media_type }}    
+
+            <br>
+            <div class="card">
+ MEDIA NAME: {{ file.media_name }}<br> 
+            MEDIA TYPE: {{ file.media_type }}<br><br>
+            </div>
+           
         </div>
         <button @click="close()">Close</button>
 
