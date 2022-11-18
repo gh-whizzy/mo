@@ -26,7 +26,6 @@ class HomeController extends Controller
     {
         $playlistsWithMedia = Playlist::with('media')->get();
 
-        // dd($playlist);
         return view('home', compact('playlistsWithMedia'));
     }
 }

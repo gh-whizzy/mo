@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \App\Models\Playlist;
 
-
 class Media extends Model
 {
     use HasFactory;
@@ -22,6 +21,4 @@ class Media extends Model
     {
         return $this->belongsTo(Playlist::class);
     }
-
-
 }
