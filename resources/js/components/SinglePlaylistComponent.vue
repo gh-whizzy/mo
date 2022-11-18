@@ -2,7 +2,9 @@
     <div>
         <button @click="close()">Close</button>
 
-        <!-- {{mediaData}} -->
+        <b></b>
+
+  
 
         <strong>Playlist </strong>
             <form @submit.prevent="submit" enctype="multipart/form-data">
@@ -10,10 +12,8 @@
                 <input type="file" @change="onChange">
                 <input type="submit" value="upload">
             </form>
-
-        <div v-show="allMedia">
-            <div v-for="media in playlistData">
-    
+        <div v-if="allMedia">
+            <div v-for="media in test1">
 
                 <br>
                 <div class="card">
@@ -29,10 +29,9 @@
         
 
         <div v-if="viewSelectedMedia">
-            {{selectedMedia}}
-            <div>Media Name: {{ selectedMedia.media_name }}</div>
-            <div>Media Type: {{ selectedMedia.media_type }}</div>
-            <div>Media File: {{ selectedMedia.file_path }}</div>
+            <div>Media Name: {{ test2.media_name }}</div>
+            <div>Media Type: {{ test2.media_type }}</div>
+            <div>Media File: {{ test2.file_path }}</div>
             <button @click="closeSelectedMedia">Close</button>
         </div>
 
@@ -47,21 +46,21 @@ export default {
             file: null,
             playlistId: null,
             viewSelectedMedia: false,
-            selectedMedia: null,
+            test2: null,
             allMedia: true,
-            md: this.$props.playlistData
+            md: this.$props.playlistData1
         }
     },
 
-    props: ['playlistData'],
+    props: ['playlistData1', 'test1'],
 
     methods: {
         view(id) {
-            console.log(this.md)
+            console.log(id)
             this.viewSelectedMedia = true
             axios.get('/getSelectedMedia/' + id).then((response) => {
-                console.log(response)
-                this.selectedMedia = response.data;
+          
+                this.test2 = response.data;
                 this.allMedia = false;
             })
         },
