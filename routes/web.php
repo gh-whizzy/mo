@@ -29,5 +29,7 @@ Route::post('/deletePlaylist', [App\Http\Controllers\PlaylistController::class, 
 Route::post('/deleteMediaFromPlaylist', [App\Http\Controllers\PlaylistController::class, 'deleteMediaFromPlaylist']);
 Route::post('/createNewPlaylist', [App\Http\Controllers\PlaylistController::class, 'createNewPlaylist']);
 
+Route::post('/upload', [App\Http\Controllers\MediaController::class, 'upload']);
+
 
 

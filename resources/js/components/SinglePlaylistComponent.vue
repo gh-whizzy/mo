@@ -1,41 +1,26 @@
 <template>
     <div>
-        <strong>Playlists</strong> <button>Add</button>
-        <div v-for="file in media">
+
+        <strong>Playlist</strong>
+            <form @submit.prevent="submit">
+                <label for="">Add media</label>
+                <input type="file" @change="onChange">
+                <input type="submit" value="upload">
+            </form>
+        <div v-for="files in media">
+
+    
 
             <br>
             <div class="card">
- MEDIA NAME: {{ file.media_name }}<br> 
-            MEDIA TYPE: {{ file.media_type }}<br><br>
+                 MEDIA NAME: {{ files.media_name }}<br> 
+                 MEDIA TYPE: {{ files.media_type }}<br><br>
             </div>
            
         </div>
         <button @click="close()">Close</button>
 
-        <!-- <strong>Single playlist</strong>
-        <br>
-        <button @click="closePlaylist">Close</button>
-        <div>{{test.id}}</div>
-        <div>{{ test.created_by }}</div>
-        <div>{{ test.playlist_name }}</div>
-        <div>{{ test.playlist_type }}</div>
-        <br><br>
 
-        <div v-for="(mediaData, index) in media">
-            <div>{{ index+1 }} </div>
-            <div>MEDIA ID: {{ mediaData.id }}</div>
-            <div>MEDIA NAME: {{ mediaData.media_name }}</div>
-            <div>MEDIA TYPE: {{ mediaData.media_type }}</div>
-            <div>MEDIA CREATED AT: {{ mediaData.created_at }}</div>
-
-            <button @click="deleteFromPlaylist(test.id, mediaData.id)">Delete from playlist</button>
-            <br><br>
-            
-        </div>
-
-
-        <br>
- -->
 
     </div>
 </template>
@@ -44,7 +29,12 @@
 
 export default {
     data() {
-        return {}
+        return {
+            file: null,
+            playlistId: null,
+            
+            
+        }
     },
 
     methods: {
@@ -53,6 +43,27 @@ export default {
             this.$parent.showSinglePlaylist = false;
             this.$parent.showEditPlaylist = false;
         },
+
+        
+            onChange(e) {
+                console.log("selected file", e.target.files[0]);
+                this.file = e.target.files[0];
+                this.playlistId = this.$props.media[0].playlist_id
+                
+                
+            },
+
+        submit() {
+            let formData = new FormData();
+            formData.append('file', this.file);
+            formData.append('playlist_id', this.playlistId)
+            axios.post('/upload', formData).then((response) => {
+                console.log('response', response.data);
+            }).catch((error) => {
+                console.log(error);
+            })
+        }
+        
         // closePlaylist() {
         //     this.$parent.showSinglePlaylist = false;
         //     this.$parent.library = true;
