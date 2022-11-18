@@ -37,8 +37,8 @@ Cypress.Commands.add('generateUser', () => {
     cy.get('#password-confirm').type('bearsB33TSbattlestarGALACTIC4')
     cy.get('#submit').click()
     cy.get('#alert').should('contain', 'You are logged in!')
-    cy.get('#navbar-dropdown').click()
-    cy.get('#navbar-logout').click()
+    // cy.get('#navbar-dropdown').click()
+    // cy.get('#navbar-logout').click()
 })
 
 Cypress.Commands.add('login', () => {
@@ -47,6 +47,13 @@ Cypress.Commands.add('login', () => {
     cy.get('#password').type('bearsB33TSbattlestarGALACTIC4')
     cy.get('#login-button').click()
     cy.get('#alert').should('contain', 'You are logged in!')
+})
+
+Cypress.Commands.add('createPlaylist', () => {
+    cy.getCyId('create-button').click()
+    cy.getCyId('create-playlist-name-input').type('Test Playlist Name')
+    cy.getCyId('create-playlist-type-input').select('Video')
+    cy.getCyId('create-playlist-submit').click()
 })
 
 
