@@ -2,7 +2,7 @@
     <div>
 
         <strong>Playlist</strong>
-            <form @submit.prevent="submit">
+            <form @submit.prevent="submit" enctype="multipart/form-data">
                 <label for="">Add media</label>
                 <input type="file" @change="onChange">
                 <input type="submit" value="upload">
@@ -15,6 +15,9 @@
             <div class="card">
                  MEDIA NAME: {{ files.media_name }}<br> 
                  MEDIA TYPE: {{ files.media_type }}<br><br>
+                 <button>view media</button>
+                 <button>delete media</button>
+                 <button>edit media</button>
             </div>
            
         </div>

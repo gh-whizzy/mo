@@ -11,27 +11,64 @@ class MediaController extends Controller
     public function upload(Request $request)
     {
         //if request video
-        if ($request->hasFile('file')){
-            $file = $request->file('file');
-            $file_name = time().'_'.$file->getClientOriginalName();
 
-            $file->move(public_path('media'), $file_name);
+        $mediaType = strtok($request->file('file')->getMimeType(), '/');
+        
+        if ($request->file('file')){
+            if ($mediaType === 'video') {
+                $file = $request->file('file');
+                $file_name = time().'_'.$file->getClientOriginalName();
+    
+                $file->move(public_path('media'), $file_name);
+    
+                $media = new Media;
+    
+                $media->playlist_id = $request->playlist_id;
+                $media->media_name = $file_name;
+                $media->media_type = 'video';
+                $media->file_path = str_replace('\\', '/', public_path('video/')).$file_name;
+    
+                $media->save();
+            }
 
-            $media = new Media;
+            elseif ($mediaType === 'audio') {
+                $file = $request->file('file');
+                $file_name = time().'_'.$file->getClientOriginalName();
+    
+                $file->move(public_path('media'), $file_name);
+    
+                $media = new Media;
+    
+                $media->playlist_id = $request->playlist_id;
+                $media->media_name = $file_name;
+                $media->media_type = 'audio';
+                $media->file_path = str_replace('\\', '/', public_path('audio/')).$file_name;
+    
+                $media->save();
+            }
 
-            $media->playlist_id = $request->playlist_id;
-            $media->media_name = $file_name;
-            $media->media_type = 'video';
-            $media->file_path = 'public';
+            elseif ($mediaType === 'image') {
+                $file = $request->file('file');
+                $file_name = time().'_'.$file->getClientOriginalName();
+    
+                $file->move(public_path('image'), $file_name);
+    
+                $media = new Media;
+    
+                $media->playlist_id = $request->playlist_id;
+                $media->media_name = $file_name;
+                $media->media_type = 'image';
+                $media->file_path = str_replace('\\', '/', public_path('image/')).$file_name;
+    
+                $media->save();
+            }
 
-            $media->save();
-            
-            
-
-            return response()->json([
-                'message' => 'File uploaded success'
-            ], 200);
         }
+
+        
+        return response()->json([
+            'message' => 'File uploaded success'
+        ], 200);
     }
 
         // audio
