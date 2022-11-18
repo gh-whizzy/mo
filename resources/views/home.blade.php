@@ -17,7 +17,7 @@
                     {{ __('You are logged in!') }}
 
                     <div id="app">
-                        <example-component></example-component>
+                        <example-component :playlists="'{{ $playlistsWithMedia }}'"></example-component>
                     </div>
                 </div>
             </div>

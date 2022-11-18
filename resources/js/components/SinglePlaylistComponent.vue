@@ -1,41 +1,28 @@
 <template>
     <div>
-        <strong>Single playlist</strong>
-        <br>
-        <button @click="closePlaylist">Close</button>
-        <div>{{test.id}}</div>
-        <div>{{ test.created_by }}</div>
-        <div>{{ test.playlist_name }}</div>
-        <div>{{ test.playlist_type }}</div>
-        <br><br>
-        <!-- {{test.media}} -->
-        <!-- <div>{{ JSON.parse(test.media) }}</div> -->
 
-        <!-- {{ media }} -->
-        
-        <div v-for="(mediaData, index) in media">
-            <div>{{ index+1 }} </div>
-            <div>MEDIA ID: {{ mediaData.id }}</div>
-            <div>MEDIA NAME: {{ mediaData.media_name }}</div>
-            <div>MEDIA TYPE: {{ mediaData.media_type }}</div>
-            <div>MEDIA CREATED AT: {{ mediaData.created_at }}</div>
+        <strong>Playlist</strong>
+            <form @submit.prevent="submit" enctype="multipart/form-data">
+                <label for="">Add media</label>
+                <input type="file" @change="onChange">
+                <input type="submit" value="upload">
+            </form>
+        <div v-for="files in media">
 
-            <button @click="deleteFromPlaylist(test.id, mediaData.id)">Delete from playlist</button>
-            <br><br>
-            
+    
+
+            <br>
+            <div class="card">
+                 MEDIA NAME: {{ files.media_name }}<br> 
+                 MEDIA TYPE: {{ files.media_type }}<br><br>
+                 <button>view media</button>
+                 <button>delete media</button>
+                 <button>edit media</button>
+            </div>
+           
         </div>
+        <button @click="close()">Close</button>
 
-        <!-- <div v-for="stuff in media.media">
-            MEDIA NAME: {{stuff.media_name}}
-            <br>
-            TYPE: {{stuff.media_type}}
-            <br>
-            CREATED AT: {{stuff.created_at}}
-            <button>Delete</button>            
-            <br><br>
-
-        </div> -->
-        <br>
 
 
     </div>
@@ -45,26 +32,57 @@
 
 export default {
     data() {
-        return {}
-    },
-
-    methods: {
-        closePlaylist() {
-            this.$parent.showSinglePlaylist = false;
-            this.$parent.library = true;
-        },
-
-        deleteFromPlaylist(playlistId, mediaId) {
-            // console.log(id);
-            console.log(playlistId)
-            console.log(mediaId);
-            axios.post('/deleteMediaFromPlaylist', {
-                playlistId: playlistId,
-                mediaId: mediaId
-            }).then(res=>console.log(res))
+        return {
+            file: null,
+            playlistId: null,
+            
+            
         }
     },
 
-    props: ['test', 'media']
+    methods: {
+        close() {
+            this.$parent.library = true;
+            this.$parent.showSinglePlaylist = false;
+            this.$parent.showEditPlaylist = false;
+        },
+
+        
+            onChange(e) {
+                console.log("selected file", e.target.files[0]);
+                this.file = e.target.files[0];
+                this.playlistId = this.$props.media[0].playlist_id
+                
+                
+            },
+
+        submit() {
+            let formData = new FormData();
+            formData.append('file', this.file);
+            formData.append('playlist_id', this.playlistId)
+            axios.post('/upload', formData).then((response) => {
+                console.log('response', response.data);
+            }).catch((error) => {
+                console.log(error);
+            })
+        }
+        
+        // closePlaylist() {
+        //     this.$parent.showSinglePlaylist = false;
+        //     this.$parent.library = true;
+        // },
+
+        // deleteFromPlaylist(playlistId, mediaId) {
+        //     // console.log(id);
+        //     console.log(playlistId)
+        //     console.log(mediaId);
+        //     axios.post('/deleteMediaFromPlaylist', {
+        //         playlistId: playlistId,
+        //         mediaId: mediaId
+        //     }).then(res=>console.log(res))
+        // }
+    },
+
+    props: ['media']
 }
 </script>

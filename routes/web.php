@@ -22,12 +22,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/getAllPlaylists', [App\Http\Controllers\PlaylistController::class, 'getAllPlaylists'])->name('getAllPlaylists');
-Route::get('/playlist/{id}', [App\Http\Controllers\PlaylistController::class, 'playlist'])->name('playlist');
+Route::get('/getPlaylist/{id}', [App\Http\Controllers\PlaylistController::class, 'getPlaylist'])->name('getPlaylist');
 Route::get('/test/{id}', [App\Http\Controllers\PlaylistController::class, 'test'])->name('test');
 Route::post('/editPlaylist', [App\Http\Controllers\PlaylistController::class, 'editPlaylist']);
 Route::post('/deletePlaylist', [App\Http\Controllers\PlaylistController::class, 'deletePlaylist']);
 Route::post('/deleteMediaFromPlaylist', [App\Http\Controllers\PlaylistController::class, 'deleteMediaFromPlaylist']);
 Route::post('/createNewPlaylist', [App\Http\Controllers\PlaylistController::class, 'createNewPlaylist']);
+
+Route::post('/upload', [App\Http\Controllers\MediaController::class, 'upload']);
 
 
 

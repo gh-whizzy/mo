@@ -19,20 +19,22 @@ class PlaylistController extends Controller
         return $playlists;
     }
 
-    public function playlist($mediaIds) 
+    public function getPlaylist($id) 
     {   
-        // Log::info(gettype($mediaIds)); 
-        // string
-        // Log::info(explode(',', $mediaIds));
-        $test=[];
-        foreach (explode(',', $mediaIds) as $id) {
-            Log::info($id);
-            $media = Media::find($id);
-            Log::info($media);
-            $test[]=$media;
-        }
+        // dd(Playlist::find($id)->media);
 
-        return $test;
+        // // Log::info(gettype($mediaIds)); 
+        // // string
+        // // Log::info(explode(',', $mediaIds));
+        // $test=[];
+        // foreach (explode(',', $mediaIds) as $id) {
+        //     Log::info($id);
+        //     $media = Media::find($id);
+        //     Log::info($media);
+        //     $test[]=$media;
+        // }
+
+        return Playlist::find($id)->media;
 
         
         // dd($mediaIds);
@@ -66,9 +68,12 @@ class PlaylistController extends Controller
     public function createNewPlaylist(Request $request)
     {
         $playlist = new Playlist;
+        
         $playlist->playlist_name = $request->newPlaylistName;
         $playlist->playlist_type = $request->playlistType;
         $playlist->created_by = Auth::user()->name;
+
+        $playlist->id = Media::max('playlist_id') + 1;
         $playlist->save();
 
         // $user_name = Auth::user()->name;
@@ -78,6 +83,7 @@ class PlaylistController extends Controller
     public function editPlaylist(Request $request) 
     {
         $playlist = Playlist::find($request->id);
+        // dd($playlist);
         $playlist->playlist_name = $request->name;
         $playlist->save();
         return redirect('/');
@@ -112,42 +118,51 @@ class PlaylistController extends Controller
         Playlist::find($id)->delete();
     }
 
+
+
+
+
+
+
     public function deleteMediaFromPlaylist(Request $request) 
     {
+        // $playlist_id = $request->id; 
+
+        Playlist::where('id', $request->id)->delete();
         
-        $id_playlist = $request->playlistId;
-        $input_media = $request->mediaId;
+        // $id_playlist = $request->playlistId;
+        // $input_media = $request->mediaId;
 
-        $playlist = Playlist::find($id_playlist);
-        // dd($playlist);
+        // $playlist = Playlist::find($id_playlist);
+        // // dd($playlist);
 
-        $hello= $playlist->media;
-        // Log::info("before");
+        // $hello= $playlist->media;
+        // // Log::info("before");
 
-        // Log::info($hello);
-        foreach($hello as $key=>$value) 
-        {
-            // Log::info($key);
-            if ($input_media === $value) {
-                unset($hello[$key]);
-            }
-        }
-        // Log::info("after");
+        // // Log::info($hello);
+        // foreach($hello as $key=>$value) 
+        // {
+        //     // Log::info($key);
+        //     if ($input_media === $value) {
+        //         unset($hello[$key]);
+        //     }
+        // }
+        // // Log::info("after");
         
-        // Log::info($hello);
-        // Log::info(json_encode($hello));
+        // // Log::info($hello);
+        // // Log::info(json_encode($hello));
 
-        $list=[];
+        // $list=[];
 
-        foreach($hello as $k=>$v) {
-            array_push($list, $v);
-        }
+        // foreach($hello as $k=>$v) {
+        //     array_push($list, $v);
+        // }
 
 
-        $playlist->update([
-            'playlist_name' => 'changed',
-            'media' => $list
-        ]);
+        // $playlist->update([
+        //     'playlist_name' => 'changed',
+        //     'media' => $list
+        // ]);
 
         
 
