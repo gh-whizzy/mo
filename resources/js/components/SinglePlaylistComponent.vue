@@ -1,20 +1,22 @@
 <template>
     <div>
+        <br>
+        
+
+        <div v-if="uploadForm">
+            <strong>Playlists</strong>
+
         <button @click="close()">Close</button>
+        <form @submit.prevent="submit" enctype="multipart/form-data">
+            <label for="">Add media</label>
+            <input type="file" @change="onChange">
+            <input type="submit" value="upload">
+        </form>
+        </div>
 
-        <b></b>
-
-  
-
-        <strong>Playlist </strong>
-            <form @submit.prevent="submit" enctype="multipart/form-data">
-                <label for="">Add media</label>
-                <input type="file" @change="onChange">
-                <input type="submit" value="upload">
-            </form>
+        
         <div v-if="allMedia">
             <div v-for="media in test1">
-
                 <br>
                 <div class="card">
                     MEDIA NAME: {{media.media_name}} <br> 
@@ -48,7 +50,8 @@ export default {
             viewSelectedMedia: false,
             test2: null,
             allMedia: true,
-            md: this.$props.playlistData1
+            // md: this.$props.playlistData1,
+            uploadForm: true
         }
     },
 
@@ -56,18 +59,19 @@ export default {
 
     methods: {
         view(id) {
-            console.log(id)
             this.viewSelectedMedia = true
-            axios.get('/getSelectedMedia/' + id).then((response) => {
-          
+            axios.get('/getSelectedMedia/' + id).then((response) => {          
                 this.test2 = response.data;
                 this.allMedia = false;
+                this.uploadForm = false;
             })
         },
 
         closeSelectedMedia() {
             this.allMedia = true;
             this.viewSelectedMedia = false;
+                        this.uploadForm = true
+
         },
 
         deleteMedia(id) {
@@ -88,7 +92,7 @@ export default {
         onChange(e) {
             console.log("selected file", e.target.files[0]);
             this.file = e.target.files[0];
-            this.playlistId = this.$props.playlistData[0].playlist_id
+            this.playlistId = this.$props.test1[0].playlist_id
         },
 
         submit() {

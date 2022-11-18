@@ -56,8 +56,6 @@ class MediaController extends Controller
                 $file->move(public_path('image'), $file_name);
     
                 $media = new Media;
-                dd($request);
-                dd($media);
     
                 $media->playlist_id = $request->playlist_id;
                 $media->media_name = $file_name;
