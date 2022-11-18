@@ -10,14 +10,14 @@
         <button @click="createPlaylist()" data-cy="create-button">
             Create
         </button>
-            <div v-for="playlist in playlistData" class="container">
+            <div v-for="(playlist, index) in playlistData" class="container">
                 PLAYLIST NAME: {{ playlist.playlist_name }}<br>
                 PLAYLIST TYPE: {{ playlist.playlist_type }}<br>
                 PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
                 PLAYLIST CREATED AT{{ playlist.created_at}}<br><br>
-                <button @click="viewMedia(playlist.id)">VIEW</button>
-                <button @click="editPlaylist(playlist)">EDIT</button>
-                <button @click="deletePlaylist(playlist.id)">DELETE</button>
+                <button @click="viewPlaylist(playlist.id)" data-cy="view-playlist-btn">VIEW</button>
+                <button @click="editPlaylist(playlist)" :data-cy="`edit-playlist-btn-` + playlist.id">EDIT</button>
+                <button @click="deletePlaylist(playlist.id)" data-cy="delete-playlist-btn">DELETE</button>
             </div>
         </div>
 
@@ -102,7 +102,7 @@
                 this.playlistToEdit = selectedPlaylist;
                 console.log(this.playlistToEdit);
             },
-            viewMedia(id) {
+            viewPlaylist(id) {
                 this.showSinglePlaylist = true;
                 this.library = false;
                 this.showEditPlaylist = false;

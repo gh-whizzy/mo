@@ -9,10 +9,10 @@
      <form @submit.prevent="editPlaylist(test)">
 
             PLAYLIST NAME: 
-            <input type="text" v-model="newPlaylistName">
+            <input type="text" v-model="newPlaylistName" data-cy="playlist-name-input">
             <br><br>
 
-            <button type="submit">Submit</button>
+            <button type="submit" data-cy="submit-btn">Submit</button>
         </form>
 </template>
 
