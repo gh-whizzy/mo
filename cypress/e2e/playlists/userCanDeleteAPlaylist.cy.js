@@ -6,8 +6,6 @@ describe('User can delete a playlist', () => {
     })
     
     it('Deletes the first 3 Playlist', () => {
-
-        
         
         cy.request('/getAllPlaylists').then( function(response) {
 
