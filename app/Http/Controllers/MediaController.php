@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
+    public function getAllMedia() {
+        return Media::all();
+    }
     //
     public function upload(Request $request)
     {

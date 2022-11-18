@@ -22,7 +22,7 @@
                     MEDIA NAME: {{media.media_name}} <br> 
                     MEDIA TYPE: {{media.media_type}}<br><br>
                     <button @click="view(media.id)">view media</button>
-                    <button @click="deleteMedia(media.id)">delete media</button>
+                    <button @click="deleteMedia(media.id)" :data-cy="'delete-media-btn-' + media.id">delete media</button>
                     <button>edit media</button>
                 </div>
             

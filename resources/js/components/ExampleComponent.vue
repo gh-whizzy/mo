@@ -5,13 +5,15 @@
             Create 
         </button>
             <div v-for="(playlist, index) in playlistData" class="container">
+                
                 PLAYLIST NAME: {{ playlist.playlist_name }}<br>
                 PLAYLIST TYPE: {{ playlist.playlist_type }}<br>
                 PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
                 PLAYLIST CREATED AT{{ playlist.created_at}}<br><br>
+
                 <button 
                     @click="viewPlaylist(playlist.id)" 
-                    data-cy="view-playlist-btn"
+                    :data-cy="'view-playlist-btn-' + playlist.id"
                 >
                     VIEW
                 </button>
