@@ -11,6 +11,7 @@ describe('User can edit a playlist', () => {
         cy.intercept({method: 'POST', url: '/editPlaylist'}).as('call')
 
         cy.request('/getAllPlaylists').then((response) => {
+
             let oldPlaylistName = response.body[0].playlist_name;
 
             cy.getCyId('edit-playlist-btn-1').click()
@@ -19,6 +20,7 @@ describe('User can edit a playlist', () => {
 
             cy.wait('@call').then((data) => {
                 cy.request('/getAllPlaylists').then((response) => {
+                    
                     let newPlaylistName = response.body[0].playlist_name;
 
                     expect(newPlaylistName).to.not.equal(oldPlaylistName);
