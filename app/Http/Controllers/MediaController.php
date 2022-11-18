@@ -71,7 +71,11 @@ class MediaController extends Controller
         ], 200);
     }
 
-        // audio
+    public function deleteMediaFromPlaylist(Request $request, $id)
+    {
+        // dd($id);
+        
 
-        // image
+        Media::find($id)->delete();
+    }
 }

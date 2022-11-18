@@ -7,7 +7,7 @@
         <br>
 
         <div v-show="library" class="container">
-            <button @click="createPlaylist()">
+        <button @click="createPlaylist()" data-cy="create-button">
             Create
         </button>
             <div v-for="playlist in playlistData" class="container">
@@ -23,7 +23,7 @@
 
 
         <create-playlist v-if="createPlaylistComponent" />
-        <single-playlist v-if="showSinglePlaylist" :media="singlePlaylistMedia"/>
+        <single-playlist v-show="showSinglePlaylist" :media="singlePlaylistMedia"/>
         <edit-playlist v-if="showEditPlaylist" :test="playlistToEdit" />
         <!-- <div v-show="library">
         <button @click="createPlaylist()">

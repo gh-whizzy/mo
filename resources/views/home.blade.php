@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
+                <div id="alert" class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -17,7 +17,7 @@
                     {{ __('You are logged in!') }}
 
                     <div id="app">
-                        <example-component :playlists="'{{ $playlistsWithMedia }}'"></example-component>
+                        <example-component id="home-component" :playlists="'{{ $playlistsWithMedia }}'"></example-component>
                     </div>
                 </div>
             </div>

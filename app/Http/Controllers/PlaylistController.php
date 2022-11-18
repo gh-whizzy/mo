@@ -73,7 +73,7 @@ class PlaylistController extends Controller
         $playlist->playlist_type = $request->playlistType;
         $playlist->created_by = Auth::user()->name;
 
-        $playlist->id = Media::max('playlist_id') + 1;
+        // $playlist->id = Media::max('playlist_id') + 1;
         $playlist->save();
 
         // $user_name = Auth::user()->name;
@@ -113,7 +113,6 @@ class PlaylistController extends Controller
     public function deletePlaylist(Request $request)
     {
         $id = $request->playlistId;
-        // dd($id);
 
         Playlist::find($id)->delete();
     }
