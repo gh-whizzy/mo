@@ -16,8 +16,8 @@
                 PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
                 PLAYLIST CREATED AT{{ playlist.created_at}}<br><br>
                 <button @click="viewPlaylist(playlist.id)" data-cy="view-playlist-btn">VIEW</button>
-                <button @click="editPlaylist(playlist)" :data-cy="`edit-playlist-btn-` + playlist.id">EDIT</button>
-                <button @click="deletePlaylist(playlist.id)" data-cy="delete-playlist-btn">DELETE</button>
+                <button @click="editPlaylist(playlist)" :data-cy="'edit-playlist-btn-' + playlist.id">EDIT</button>
+                <button @click="deletePlaylist(playlist.id)" :data-cy="'delete-playlist-btn-' + playlist.id">DELETE</button>
             </div>
         </div>
 
