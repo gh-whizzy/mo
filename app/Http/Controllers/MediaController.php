@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Media;
+use App\Models\Playlist;
+
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
@@ -54,6 +56,8 @@ class MediaController extends Controller
                 $file->move(public_path('image'), $file_name);
     
                 $media = new Media;
+                dd($request);
+                dd($media);
     
                 $media->playlist_id = $request->playlist_id;
                 $media->media_name = $file_name;
@@ -77,5 +81,17 @@ class MediaController extends Controller
         
 
         Media::find($id)->delete();
+    }
+
+    public function getAllMediaBelongingToPlaylist($id) 
+    {
+        $playlist = Playlist::find($id);
+        return $playlist->media;
+    }
+
+    public function getSelectedMedia($id) 
+    {
+        $media = Media::find($id);
+        return $media;
     }
 }

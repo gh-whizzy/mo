@@ -1,60 +1,42 @@
 <template>
     <div>
-        <!-- <div v-show="errors">{{ errors }}</div> -->
-
-        
-
-        <br>
-
         <div v-show="library" class="container">
         <button @click="createPlaylist()" data-cy="create-button">
-            Create
+            Create 
         </button>
             <div v-for="(playlist, index) in playlistData" class="container">
+                {{playlist.id}}
                 PLAYLIST NAME: {{ playlist.playlist_name }}<br>
                 PLAYLIST TYPE: {{ playlist.playlist_type }}<br>
                 PLAYLIST CREATED BY: {{ playlist.created_by}}<br>
                 PLAYLIST CREATED AT{{ playlist.created_at}}<br><br>
-                <button @click="viewPlaylist(playlist.id)" data-cy="view-playlist-btn">VIEW</button>
-                <button @click="editPlaylist(playlist)" :data-cy="'edit-playlist-btn-' + playlist.id">EDIT</button>
-                <button @click="deletePlaylist(playlist.id)" :data-cy="'delete-playlist-btn-' + playlist.id">DELETE</button>
+                <button 
+                    @click="viewPlaylist(playlist.id)" 
+                    data-cy="view-playlist-btn"
+                >
+                    VIEW
+                </button>
+
+                <button
+                    @click="editPlaylist(playlist)" 
+                    :data-cy="'edit-playlist-btn-' + playlist.id"
+                >
+                    EDIT
+                </button>
+                
+                <button 
+                    @click="deletePlaylist(playlist.id)" 
+                    :data-cy="'delete-playlist-btn-' + playlist.id">
+                    DELETE
+                </button>
             </div>
         </div>
 
 
         <create-playlist v-if="createPlaylistComponent" />
-        <single-playlist v-show="showSinglePlaylist" :media="singlePlaylistMedia"/>
+        <single-playlist v-if="showSinglePlaylist" :playlistData="singlePlaylistMedia" :mediaData="selectedPlaylistMedia"/>
         <edit-playlist v-if="showEditPlaylist" :test="playlistToEdit" />
-        <!-- <div v-show="library">
-        <button @click="createPlaylist()">
-            Create
-        </button>
-            <div v-for="playlist in playlists">
-                
-        
-                PLAYLIST NAME: {{ playlist.playlist_name }}
-                <br>
 
-                
-            
-
-                <button @click="viewPlaylist(playlist)">View {{playlist.id}} </button>
-                <button @click="editForm(playlist)">
-                    Edit
-                </button>
-                <button @click="deletePlaylist(playlist.id)">
-                    Delete
-                </button>
-
-                <br>
-            </div>
-        </div>
-        
-        
-        <single-playlist v-if="showSinglePlaylist" :test="this.selectedPlaylist" :media="this.playlistMedia" />
-
-        <edit-playlist v-if="editPlaylist" :test="selectedPlaylist" /> -->
-        
     </div>
 </template>
 
@@ -66,50 +48,47 @@
         data() {
             return {
                 library: true,
-                playlistData: JSON.parse(this.playlists),
+                playlistData: null,
                 showSinglePlaylist: false,
                 showEditPlaylist: false,
-                // playlists: null,
-                // errors: null,
-
-                // showSinglePlaylist: false,
-                // selectedPlaylist: null,
-                // playlistMedia: null,
-                // editPlaylist: false,
-
-                // library: true,
-
-
                 createPlaylistComponent: false,
-
-
-
                 singlePlaylistMedia: null,
+                selectedPlaylistMedia: null,
                 playlistToEdit: null
-
-      
             }
         },
-            props: ['playlists'],
+        
+        props: ['playlists'],
 
+        mounted() {
+            // console.log(JSON.parse(this.$props.playlists))
+            this.playlistData = JSON.parse(this.$props.playlists)
+        },
 
         methods: {
             editPlaylist(selectedPlaylist) {
-                console.log(selectedPlaylist);
                 this.showEditPlaylist = true;
                 this.library = false;
                 this.createPlaylistComponent = false;
                 this.playlistToEdit = selectedPlaylist;
-                console.log(this.playlistToEdit);
             },
+            
             viewPlaylist(id) {
+                console.log(id)
                 this.showSinglePlaylist = true;
                 this.library = false;
                 this.showEditPlaylist = false;
 
                 axios.get('/getPlaylist/' + id).then((response) => {
                     this.singlePlaylistMedia = response.data;
+                    console.log(this.singlePlaylistMedia)
                 })
+
+                axios.get('/getAllMediaBelongingToPlaylist/' + id).then((response) => {
+                    this.selectedPlaylistMedia = response.data;
+                    console.log(this.playlistMedia);
+                })
+                
             },
             createPlaylist() {
                 this.createPlaylistComponent = true;

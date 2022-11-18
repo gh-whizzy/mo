@@ -31,6 +31,7 @@ Route::post('/createNewPlaylist', [App\Http\Controllers\PlaylistController::clas
 
 Route::post('/upload', [App\Http\Controllers\MediaController::class, 'upload']);
 Route::post('/deleteMediaFromPlaylist/{id}', [App\Http\Controllers\MediaController::class, 'deleteMediaFromPlaylist']);
-
+Route::get('/getAllMediaBelongingToPlaylist/{id}', [App\Http\Controllers\MediaController::class, 'getAllMediaBelongingToPlaylist']);
+Route::get('/getSelectedMedia/{id}', [App\Http\Controllers\MediaController::class, 'getSelectedMedia']);
 
 
