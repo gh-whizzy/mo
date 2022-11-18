@@ -23,7 +23,7 @@
 
 
         <create-playlist v-if="createPlaylistComponent" />
-        <single-playlist v-if="showSinglePlaylist" :media="singlePlaylistMedia"/>
+        <single-playlist v-show="showSinglePlaylist" :media="singlePlaylistMedia"/>
         <edit-playlist v-if="showEditPlaylist" :test="playlistToEdit" />
         <!-- <div v-show="library">
         <button @click="createPlaylist()">

@@ -1,7 +1,8 @@
 <template>
     <div>
+        <button @click="close()">Close</button>
 
-        <strong>Playlist {{media[0].playlist_id}}</strong>
+        <strong>Playlist</strong>
             <form @submit.prevent="submit" enctype="multipart/form-data">
                 <label for="">Add media</label>
                 <input type="file" @change="onChange">
@@ -16,12 +17,11 @@
                  MEDIA NAME: {{ files.media_name }}<br> 
                  MEDIA TYPE: {{ files.media_type }}<br><br>
                  <button>view media</button>
-                 <button>delete media</button>
+                 <button @click="deleteMedia(files.id)">delete media</button>
                  <button>edit media</button>
             </div>
            
         </div>
-        <button @click="close()">Close</button>
 
 
 
@@ -41,7 +41,13 @@ export default {
     },
 
     methods: {
+        deleteMedia(id) {
+            axios.post('/deleteMediaFromPlaylist/' + id).then((response) => {
+                console.log(response);
+            })
+        },
         close() {
+            window.location.reload();
             this.$parent.library = true;
             this.$parent.showSinglePlaylist = false;
             this.$parent.showEditPlaylist = false;

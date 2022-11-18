@@ -113,7 +113,6 @@ class PlaylistController extends Controller
     public function deletePlaylist(Request $request)
     {
         $id = $request->playlistId;
-        // dd($id);
 
         Playlist::find($id)->delete();
     }

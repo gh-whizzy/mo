@@ -1,7 +1,7 @@
 describe('User Can Login', () => {
     
     before('Fresh seed of database', () => {
-        cy.exec('php artisan migrate:fresh --seed')
+        cy.exec('php artisan migrate:fresh')
         cy.generateUser()
     })
     
