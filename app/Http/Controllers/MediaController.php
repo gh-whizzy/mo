@@ -19,7 +19,7 @@ class MediaController extends Controller
                 $file = $request->file('file');
                 $file_name = time().'_'.$file->getClientOriginalName();
     
-                $file->move(public_path('media'), $file_name);
+                $file->move(public_path('video'), $file_name);
     
                 $media = new Media;
     
@@ -35,7 +35,7 @@ class MediaController extends Controller
                 $file = $request->file('file');
                 $file_name = time().'_'.$file->getClientOriginalName();
     
-                $file->move(public_path('media'), $file_name);
+                $file->move(public_path('audio'), $file_name);
     
                 $media = new Media;
     
