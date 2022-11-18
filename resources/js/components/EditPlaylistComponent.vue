@@ -1,19 +1,16 @@
 <template>
-        <button @click="close()">Close</button>
-<br>
-    <strong>Edit Playlist: {{ test.playlist_name }} </strong>
+    <div>
+        <button @click="close()">Close</button><br>
+        <strong>Edit Playlist: {{ test.playlist_name }} </strong>
 
+        <form @submit.prevent="editPlaylist(test)">
 
-
-
-     <form @submit.prevent="editPlaylist(test)">
-
-            PLAYLIST NAME: 
-            <input type="text" v-model="newPlaylistName" data-cy="playlist-name-input">
+            PLAYLIST NAME: <input type="text" v-model="newPlaylistName" data-cy="playlist-name-input">
             <br><br>
 
             <button type="submit" data-cy="submit-btn">Submit</button>
         </form>
+    </div>
 </template>
 
 <script>
@@ -26,9 +23,6 @@ export default {
 
     methods: {
         editPlaylist(test) {
-
-            console.log(test.id)
-
             axios.post('/editPlaylist', {
                 name: this.newPlaylistName,
                 id: test.id

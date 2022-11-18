@@ -55,4 +55,11 @@ Cypress.Commands.add('createPlaylist', () => {
     cy.getCyId('create-playlist-submit').click()
 })
 
+Cypress.Commands.add('refreshDB', () => {
+    cy.exec('php artisan migrate:fresh')
+})
+
+
+
+
 

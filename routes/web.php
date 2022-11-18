@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Playlist requests
 Route::get('/getAllPlaylists', [App\Http\Controllers\PlaylistController::class, 'getAllPlaylists'])->name('getAllPlaylists');
 Route::get('/getPlaylist/{id}', [App\Http\Controllers\PlaylistController::class, 'getPlaylist'])->name('getPlaylist');
 Route::get('/test/{id}', [App\Http\Controllers\PlaylistController::class, 'test'])->name('test');
@@ -29,10 +30,9 @@ Route::post('/deletePlaylist', [App\Http\Controllers\PlaylistController::class, 
 Route::post('/deleteMediaFromPlaylist', [App\Http\Controllers\PlaylistController::class, 'deleteMediaFromPlaylist']);
 Route::post('/createNewPlaylist', [App\Http\Controllers\PlaylistController::class, 'createNewPlaylist']);
 
+// Media requests
 Route::post('/upload', [App\Http\Controllers\MediaController::class, 'upload']);
 Route::post('/deleteMediaFromPlaylist/{id}', [App\Http\Controllers\MediaController::class, 'deleteMediaFromPlaylist']);
 Route::get('/getAllMediaBelongingToPlaylist/{id}', [App\Http\Controllers\MediaController::class, 'getAllMediaBelongingToPlaylist']);
 Route::get('/getSelectedMedia/{id}', [App\Http\Controllers\MediaController::class, 'getSelectedMedia']);
 Route::get('/getAllMedia', [App\Http\Controllers\MediaController::class, 'getAllMedia']);
-
-

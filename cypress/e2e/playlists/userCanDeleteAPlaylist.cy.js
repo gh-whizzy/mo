@@ -26,5 +26,9 @@ describe('User can delete a playlist', () => {
                 })
             })
         })
-    })    
+    })
+
+    after('Reset database', () => {
+        cy.exec('php artisan migrate:fresh')
+    })  
 })

@@ -15,8 +15,6 @@ class MediaController extends Controller
     //
     public function upload(Request $request)
     {
-        //if request video
-
         $mediaType = strtok($request->file('file')->getMimeType(), '/');
         
         if ($request->file('file')){
@@ -78,9 +76,6 @@ class MediaController extends Controller
 
     public function deleteMediaFromPlaylist(Request $request, $id)
     {
-        // dd($id);
-        
-
         Media::find($id)->delete();
     }
 

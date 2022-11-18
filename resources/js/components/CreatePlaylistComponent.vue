@@ -4,9 +4,9 @@
 
         <form @submit.prevent="createNewPlaylist">
 
-
-            
-            PLAYLIST NAME: {{newPlaylistNameInput}}
+            <div>
+                PLAYLIST NAME: {{newPlaylistNameInput}}
+            </div>
             <input type="text" v-model="newPlaylistNameInput" id="test" data-cy="create-playlist-name-input">
 
             <br><br>
@@ -21,9 +21,9 @@
             CREATED BE AUTO
             <br>
 
-
-            <!-- <input type="text" v-model="playlistNameInput"> -->
-            <button type="submit" data-cy="create-playlist-submit">Submit</button>
+            <button type="submit" data-cy="create-playlist-submit">
+                Submit
+            </button>
         </form>
     </div>
 </template>

@@ -13,5 +13,11 @@ describe('User Can Register', () => {
         cy.get('#password-confirm').type('bearsB33TSbattlestarGALACTIC4')
         cy.get('#submit').click()
         cy.get('#alert').should('contain', 'You are logged in!')
+        cy.get('#navbar-dropdown').click()
+        cy.get('#navbar-logout').click()
+    })
+
+    after('Reset database', () => {
+        cy.exec('php artisan migrate:fresh')
     })
 })
