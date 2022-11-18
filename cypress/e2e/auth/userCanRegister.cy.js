@@ -14,4 +14,4 @@ describe('User Can Register', () => {
         cy.get('#submit').click()
         cy.get('#alert').should('contain', 'You are logged in!')
     })
-  })
+})

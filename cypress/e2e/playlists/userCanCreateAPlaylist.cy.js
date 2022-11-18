@@ -4,10 +4,6 @@ describe('User can create a playlist', () => {
         cy.exec('php artisan migrate:fresh')
         cy.generateUser()
     })
-
-    beforeEach('Login', () => {
-        cy.login()
-    })
     
     it('Creates a video, audio, and images playlist', () => {
 
