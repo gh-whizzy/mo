@@ -1,16 +1,15 @@
-describe('User Can Login', () => {
+describe('User can create a playlist', () => {
     
-    before('Fresh seed of database', () => {
+    before('Refresh database and generate a user', () => {
         cy.exec('php artisan migrate:fresh')
         cy.generateUser()
     })
 
     beforeEach('Login', () => {
         cy.login()
-
     })
     
-    it('Creates a playlist', () => {
+    it('Creates a video, audio, and images playlist', () => {
 
         cy.intercept({method: 'POST', url: '/createNewPlaylist'}).as('call')
 
