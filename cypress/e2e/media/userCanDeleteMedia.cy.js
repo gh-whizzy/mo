@@ -13,7 +13,7 @@ describe('User can delete from a playlist', () => {
 
             cy.getCyId('view-playlist-btn-1').click()
             cy.request('/getAllMediaBelongingToPlaylist/1').then((response) => {
-                
+
                 cy.get(response.body).each((mediaId) => {
                     
                     cy.getCyId('delete-media-btn-' + mediaId.id).click()
@@ -33,5 +33,9 @@ describe('User can delete from a playlist', () => {
                 })    
             })
         })
-    })    
+    })
+
+    after('Reset database', () => {
+        cy.exec('php artisan migrate:fresh')
+    })
 })

@@ -67,5 +67,9 @@ describe('User can create a playlist', () => {
 
         cy.reload()
       
-    })    
+    })
+
+    after('Reset database', () => {
+        cy.exec('php artisan migrate:fresh')
+    })
 })

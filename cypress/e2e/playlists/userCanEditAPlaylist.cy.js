@@ -28,5 +28,9 @@ describe('User can edit a playlist', () => {
                 })
             })
         })
-    })    
+    })
+
+    after('Reset database', () => {
+        cy.exec('php artisan migrate:fresh')
+    })
 })
