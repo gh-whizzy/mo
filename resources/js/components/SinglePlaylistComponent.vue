@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <strong>Playlist</strong>
+        <strong>Playlist {{media[0].playlist_id}}</strong>
             <form @submit.prevent="submit" enctype="multipart/form-data">
                 <label for="">Add media</label>
                 <input type="file" @change="onChange">

@@ -7,7 +7,7 @@
         <br>
 
         <div v-show="library" class="container">
-            <button @click="createPlaylist()">
+        <button @click="createPlaylist()" data-cy="create-button">
             Create
         </button>
             <div v-for="playlist in playlistData" class="container">

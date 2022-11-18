@@ -37,4 +37,16 @@ Cypress.Commands.add('generateUser', () => {
     cy.get('#password-confirm').type('bearsB33TSbattlestarGALACTIC4')
     cy.get('#submit').click()
     cy.get('#alert').should('contain', 'You are logged in!')
+    cy.get('#navbar-dropdown').click()
+    cy.get('#navbar-logout').click()
 })
+
+Cypress.Commands.add('login', () => {
+    cy.visit('/home')
+    cy.get('#email').type('testuser@mail.com')
+    cy.get('#password').type('bearsB33TSbattlestarGALACTIC4')
+    cy.get('#login-button').click()
+    cy.get('#alert').should('contain', 'You are logged in!')
+})
+
+

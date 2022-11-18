@@ -7,12 +7,12 @@
 
             
             PLAYLIST NAME: {{newPlaylistNameInput}}
-            <input type="text" v-model="newPlaylistNameInput">
+            <input type="text" v-model="newPlaylistNameInput" id="test" data-cy="create-playlist-name-input">
 
             <br><br>
             
             PLAYLIST TYPE: 
-            <select v-model="newPlaylistType">
+            <select v-model="newPlaylistType" data-cy="create-playlist-type-input">
                 <option value="video">Video</option>
                 <option value="audio">Audio</option>
                 <option value="image">Images</option>
@@ -23,7 +23,7 @@
 
 
             <!-- <input type="text" v-model="playlistNameInput"> -->
-            <button type="submit">Submit</button>
+            <button type="submit" data-cy="create-playlist-submit">Submit</button>
         </form>
     </div>
 </template>
