@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Media;
+use App\Models\Playlist;
+
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
+    public function getAllMedia() {
+        return Media::all();
+    }
     //
     public function upload(Request $request)
     {
@@ -77,5 +82,17 @@ class MediaController extends Controller
         
 
         Media::find($id)->delete();
+    }
+
+    public function getAllMediaBelongingToPlaylist($id) 
+    {
+        $playlist = Playlist::find($id);
+        return $playlist->media;
+    }
+
+    public function getSelectedMedia($id) 
+    {
+        $media = Media::find($id);
+        return $media;
     }
 }

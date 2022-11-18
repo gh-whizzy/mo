@@ -3,6 +3,8 @@ describe('User Can Login', () => {
     before('Fresh seed of database', () => {
         cy.exec('php artisan migrate:fresh --seed')
         cy.generateUser()
+        cy.get('#navbar-dropdown').click()
+        cy.get('#navbar-logout').click()
     })
     
     it('Registers a new user', () => {

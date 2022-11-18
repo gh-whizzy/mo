@@ -34,7 +34,9 @@ class PlaylistController extends Controller
         //     $test[]=$media;
         // }
 
-        return Playlist::find($id)->media;
+        
+
+        return Playlist::find($id);
 
         
         // dd($mediaIds);
